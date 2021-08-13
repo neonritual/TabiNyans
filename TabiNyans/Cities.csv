@@ -1619,10 +1619,10 @@ id,city_en,prefecture_en
 39410,"Hidaka, Kochi",Kochi
 39411,"Tsuno, Kochi",Kochi
 39412,"Shimanto, Kochi (town)",Kochi
-39424,"otsuki, Kochi",Kochi
+39424,"Otsuki, Kochi",Kochi
 39427,"Mihara, Kochi",Kochi
 39428,"Kuroshio, Kochi",Kochi
-40100,Kitakyushu,Miyagi0
+40100,Kitakyushu,Miyagi
 40101,"Moji-ku, Kitakyushu",Kitakyushu
 40103,"Wakamatsu-ku, Kitakyushu",Kitakyushu
 40105,"Tobata-ku, Kitakyushu",Kitakyushu
@@ -1805,7 +1805,7 @@ id,city_en,prefecture_en
 44341,"Hiji, oita",Oita
 44461,"Kokonoe, oita",Oita
 44462,"Kusu, oita",Oita
-45201,Miyazaki (city),MiyagiAkita
+45201,Miyazaki (city),Miyazaki
 45202,Miyakonojo,Miyazaki
 45203,"Nobeoka, Miyazaki",Miyazaki
 45204,"Nichinan, Miyazaki",Miyazaki
