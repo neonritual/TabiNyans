@@ -43,3 +43,18 @@ class Hotel(models.Model):
 
     def __str__(self):
         return self.hotel_name
+
+
+class Review(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    hotel = models.ForeignKey(Hotel, on_delete=models.DO_NOTHING)
+    pub_date = models.DateField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    comment = models.CharField(max_length=500)
+    rating = models.IntegerField(choices=RATING_CHOICES)
