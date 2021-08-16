@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from smart_selects.db_fields import ChainedForeignKey
 from csv import DictReader
 import pandas as pd
 
@@ -20,7 +21,11 @@ class Hotel(models.Model):
     hotel_name = models.CharField(max_length=100, verbose_name='Hotel Name')
     location_url = models.URLField(max_length=400, verbose_name='Google Maps URL', default='https://google.com')
     prefecture = models.ForeignKey(Prefecture, on_delete=models.SET_NULL, blank=True, null=True)
-    city = models.ForeignKey(City, on_delete=models.SET_NULL, blank=True, null=True)
+    city = ChainedForeignKey(
+        City,
+        chained_field="prefecture",
+        chained_model_field="prefecture",
+    )
     address = models.CharField(max_length=100, verbose_name='Address')
     logo = models.ImageField(upload_to='logos/', verbose_name='Hotel Logo', null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)

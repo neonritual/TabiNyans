@@ -3,7 +3,7 @@
 <head>
     {% extends 'base.html' %}
     <meta charset="UTF-8">
-</head>
+
 
 {% block content %}
 <body>
@@ -12,6 +12,7 @@
 <div>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        {{ form.media.js }}
         {{form.as_p}}
         <button class="btn btn-primary">Submit</button>
     </form>

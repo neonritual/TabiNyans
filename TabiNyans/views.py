@@ -21,7 +21,7 @@ def add_hotel(request):
             return HttpResponse("Submission complete.")
     else:
         form = forms.HotelForm()
-        return render(request, 'add_hotel.html',  {'form': form})
+    return render(request, 'add_hotel.html',  {'form': form})
 
 
 
