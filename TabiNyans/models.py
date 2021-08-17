@@ -19,7 +19,8 @@ class City(models.Model):
 
 class Hotel(models.Model):
     hotel_name = models.CharField(max_length=100, verbose_name='Hotel Name')
-    location_url = models.URLField(max_length=400, verbose_name='Google Maps URL', default='https://google.com')
+    website_url = models.URLField(max_length=400, verbose_name='Hotel Website', blank=True, null=True)
+    location_url = models.URLField(max_length=400, verbose_name='Google Maps URL', blank=True, null=True)
     prefecture = models.ForeignKey(Prefecture, on_delete=models.SET_NULL, blank=True, null=True)
     city = ChainedForeignKey(
         City,
@@ -53,8 +54,12 @@ class Review(models.Model):
         (4, '4'),
         (5, '5'),
     )
-    hotel = models.ForeignKey(Hotel, on_delete=models.DO_NOTHING)
+    hotel = models.ForeignKey(Hotel, related_name="reviews", on_delete=models.DO_NOTHING)
     pub_date = models.DateField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     comment = models.CharField(max_length=500)
     rating = models.IntegerField(choices=RATING_CHOICES)
+    admin_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return '%s - %s' % (self.hotel, self.author)

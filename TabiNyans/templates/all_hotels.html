@@ -1,48 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% extends 'base.html' %}
-    <meta charset="UTF-8">
-
+{% extends "base.html" %} 
 {% block content %}
-<body>
-<h1>ALL HOTELS</h1>
 
-{% for hotel in hotels %}
-<ul>{{ hotel.hotel_name}}</ul>
-<ul>{{ hotel.city }}</ul>
-<ul>{{ hotel.location_url }}</ul>
-<ul>{{ hotel.hours }}</ul>
-<ul>{{ hotel.price }}</ul>
-<ul>{{ hotel.dogs }}</ul>
+{% for hotel in object_list %}
+
+<p><a href="{% url 'hotel_detail' hotel.pk %}">{{hotel.hotel_name}} - {{ hotel.city}}</a>
+
 {% endfor %}
 
 
-
-</body>
-{% endblock %}
-</html>
-
-<!--class Hotel(models.Model):-->
-<!--    hotel_name = models.CharField(max_length=100, verbose_name='Hotel Name')-->
-<!--    location_url = models.URLField(max_length=400, verbose_name='Google Maps URL', default='https://google.com')-->
-<!--    prefecture = models.ForeignKey(Prefecture, on_delete=models.SET_NULL, blank=True, null=True)-->
-<!--    city = ChainedForeignKey(-->
-<!--        City,-->
-<!--        chained_field="prefecture",-->
-<!--        chained_model_field="prefecture",-->
-<!--    )-->
-<!--    address = models.CharField(max_length=100, verbose_name='Address')-->
-<!--    logo = models.ImageField(upload_to='logos/', verbose_name='Hotel Logo', null=True, blank=True)-->
-<!--    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)-->
-<!--    hours = models.CharField(max_length=100, verbose_name='Open Hours', blank=True)-->
-<!--    price = models.CharField(max_length=100, verbose_name='Nightly Price', blank=True)-->
-<!--    high_season = models.BooleanField(verbose_name='High Season Rates')-->
-<!--    dogs = models.BooleanField(verbose_name='Dogs on Premises')-->
-<!--    short_term = models.BooleanField(verbose_name='Short Term Available')-->
-<!--    food = models.BooleanField(verbose_name='Food Available')-->
-<!--    night_staff = models.BooleanField(verbose_name='24HR Staff')-->
-<!--    specials = models.CharField(max_length=200, verbose_name='Special Services', blank=True)-->
-<!--    extra = models.CharField(max_length=200, verbose_name='Other Information', blank=True)-->
-<!--    images = models.ImageField(upload_to='hotel_image/', verbose_name='Hotel Image', blank=True, null=True)-->
-<!--    admin_approved = models.BooleanField(default=False)-->
+{%endblock%}
