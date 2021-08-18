@@ -1,12 +1,12 @@
 from datetime import timezone
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_protect
 from . import forms
 from django.http import HttpResponse
 from .forms import ReviewForm
-from .models import Hotel
-from django.views.generic import ListView, DetailView
-from django.urls import reverse_lazy
+from .models import Hotel, Review
+from django.views.generic import ListView, DetailView, CreateView
 
 
 def index(request):
@@ -36,30 +36,13 @@ class HotelDetailView(DetailView):
     model = Hotel
     template_name = 'hotel.html'
 
-#
-# def hotel_detail(request, slug):
-#     template_name = 'hotel.html'
-#     hotel = get_object_or_404(Hotel, slug=id)
-#     reviews = hotel.reviews.filter(admin_approved=True)
-#     new_review = None
-#     if request.method == 'POST':
-#         review_form = ReviewForm(data=request.POST)
-#         if review_form.is_valid():
-#             new_review = review_form.save(commit=False)
-#             new_review.hotel = hotel
-#             new_review.save()
-#         else:
-#             review_form = ReviewForm()
-#
-#         return render(request, template_name, {'hotel': hotel,
-#                                                'reviews': reviews,
-#                                                'new_review': new_review,
-#                                                'review_form': review_form,
-#                                                'slug': hotel.pk
-#                                                })
+class AddReview(CreateView):
+    model = Review
+    form_class = ReviewForm
+    template_name = 'review.html'
 
-
-# class HotelReview(Edit)
-#     form_class = ReviewForm
-#
-#
+    def form_valid(self, form):
+        form.instance.hotel = Hotel.objects.get(id=self.kwargs['pk'])
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    success_url = reverse_lazy('index')

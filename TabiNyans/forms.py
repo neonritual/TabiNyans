@@ -13,5 +13,5 @@ class HotelForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
        model = Review
-       fields = ['hotel', 'comment', 'rating']
+       fields = ['comment', 'rating']
 
