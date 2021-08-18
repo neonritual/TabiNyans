@@ -35,6 +35,6 @@
     {% endfor %}
 {% endif %}
 {% if user.is_authenticated %}
-<p><a href="{% url 'add_review' hotel.pk %}">Review this hotel.</a></p>
+<p><a href="{% url 'add_review' hotel.pk %}?next={{request.path}}">Review this hotel.</a></p>
 {% endif %}
 {%endblock%}

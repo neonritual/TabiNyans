@@ -1,6 +1,6 @@
 from datetime import timezone
-from django.shortcuts import render, get_object_or_404
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
 from django.views.decorators.csrf import csrf_protect
 from . import forms
 from django.http import HttpResponse
@@ -45,4 +45,7 @@ class AddReview(CreateView):
         form.instance.hotel = Hotel.objects.get(id=self.kwargs['pk'])
         form.instance.author = self.request.user
         return super().form_valid(form)
-    success_url = reverse_lazy('index')
+    #
+    def get_success_url(self):
+        return reverse('hotel_detail',kwargs={ "pk": self.kwargs['pk'] })
+

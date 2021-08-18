@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 from smart_selects.db_fields import ChainedForeignKey
 from csv import DictReader
 import pandas as pd
@@ -41,6 +42,9 @@ class Hotel(models.Model):
     extra = models.CharField(max_length=200, verbose_name='Other Information', blank=True)
     images = models.ImageField(upload_to='hotel_image/', verbose_name='Hotel Image', blank=True, null=True)
     admin_approved = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse('hotel_detail', args=[self.pk])
 
     def __str__(self):
         return self.hotel_name
