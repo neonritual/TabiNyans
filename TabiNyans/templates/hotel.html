@@ -8,21 +8,6 @@
 
 <br/>------------
 <br/>
-
-<!--   {% for review in reviews %}-->
-<!--        <div class="comments" style="padding: 10px;">-->
-<!--          <p class="font-weight-bold">-->
-<!--            {{ review.name }} - {{ review.rating }}-->
-<!--            <span class=" text-muted font-weight-normal">-->
-<!--              {{ review.pub_date }}-->
-<!--            </span>-->
-<!--          </p>-->
-<!--          {{ review.comment | linebreaks }}-->
-
-<!--        </div>-->
-<!--        {% endfor %}-->
-
-<!--<br>-->
 <br>----
 <br>
 <h2>Reviews</h2>
@@ -30,8 +15,10 @@
     No reviews for this hotel.
 {% else %}
     {% for review in hotel.reviews.all %}
-<p><strong>{{ review.author }} - {{review.pub_date}} - {{ review.rating }}</strong>
-        <p>{{ review.comment }}
+      {% if review.admin_approved is True %}
+    <p><strong>{{ review.author }} - {{review.pub_date}} - {{ review.rating }}</strong>
+            <p>{{ review.comment }}
+      {% endif %}
     {% endfor %}
 {% endif %}
 {% if user.is_authenticated %}
