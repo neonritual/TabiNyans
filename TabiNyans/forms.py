@@ -1,3 +1,5 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.forms import ModelForm
 from TabiNyans.models import Hotel, Review
 
@@ -14,4 +16,14 @@ class ReviewForm(ModelForm):
     class Meta:
        model = Review
        fields = ['comment', 'rating']
+
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+            'password1',
+            'password2',
+            ]
 

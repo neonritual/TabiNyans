@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br>
+    <p>
+    <div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.username.label }}
+        <br>{{ form.username }}
+      <br>{{ form.email.label }}
+        <br>{{ form.email }}
+              <br>{{ form.password1.label }}
+        <br>{{ form.password1 }}
+             <br> {{ form.password2.label }}
+        <br>{{ form.password2 }}
+      <br> {{ form.errors }}
+
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% for message in messages %}
+					<p id="messages">{{message}}</p>
+				{% endfor %}
+
+{%endblock%}
