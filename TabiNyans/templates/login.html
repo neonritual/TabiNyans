@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<br><br>
+
+<div class="uk-container uk-margin-large-top">
     <p>
     <div class="form-group">
     <form method="POST">
@@ -16,6 +17,9 @@
 {% for message in messages %}
 					<p id="messages">{{message}}</p>
 				{% endfor %}
+
+</div>
+</div>
 
 {%endblock%}
 
