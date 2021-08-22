@@ -3,16 +3,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.decorators.csrf import csrf_protect
 from . import forms
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ReviewForm, RegisterForm
 from .models import Hotel, Review
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
-#
-# class index(TemplateView):
-#     template_name = "index.html"
+
+
 
 def index(request):
     if request.user.is_authenticated:
@@ -81,11 +80,15 @@ def register_user(request):
         if request.method == 'POST':
             form = RegisterForm(request.POST)
             if form.is_valid():
+                new_user = form.save()
                 form.save()
                 user = form.cleaned_data.get('username')
                 messages.success(request, 'Account was created for ' + user)
+                login(request, new_user)
+                return redirect('index')
+            else:
+                messages.error(request, "Error")
 
-                return redirect('login')
 
         context = {'form': form}
         return render(request, 'register.html', context)
@@ -115,9 +118,16 @@ def logout_user(request):
     logout(request)
     return redirect('index')
 
-# class RegisterUserView(CreateView):
-#     form_class = forms.RegisterForm
-#     template_name = 'register.html'
+class AboutUs(TemplateView):
+    template_name = "about.html"
 #
-#     def get_success_url(self):
-#         return 'index'
+# def search_hotels(request):
+#     if request.method == 'POST':
+#         prefecture = request.POST.get('prefecture')
+#         city = request.POST.get('city')
+#         results = Hotel.objects.filter(prefecture=prefecture) AND
+#
+#
+#
+#     context = {}
+#     return render(request, 'search.html', context)

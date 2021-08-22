@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="uk-height-viewport uk-margin-remove uk-flex uk-flex-center uk-flex-middle uk-background-cover"
+     data-src="{% static 'images/uta-scholl-W-bi51DgwYQ-unsplash.jpg' %}" uk-img>
+
+<div class="uk-card uk-card-default uk-card-large uk-box-shadow-medium">
+    <div class="uk-card-body">
+        <h3>Find a Hotel</h3>
+        <hr>
+            Find the perfect hotel for your feline friend.
+        <br>
+        <br>
+    	<!-- login -->
+			<form class="toggle-class" method="POST">
+				       {% csrf_token %}
+
+
+
+
+
+					<div class="uk-margin-bottom">
+						<button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">Sign Up</button>
+					</div>
+				</fieldset>
+			</form>
+
+              </div>
+    </div>
+
+</div>
+
+{%endblock%}

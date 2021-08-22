@@ -24,6 +24,15 @@
         font-size: 2em;
         }
 
+
+        .main-header-text {
+        font-size: 3em;
+        }
+
+        .main-sub-header-text {
+        font-size: 1.2em;
+        }
+
         .poppins {
         font-family: 'Poppins', sans-serif;
         }
@@ -36,6 +45,11 @@
           opacity: 0.7;
         }
 
+        .transparency-low {
+          opacity: 0.9;
+        }
+
+
         .uk-button-secondary{background-color:#a1a1a1;color:#fff;border:1px solid transparent}
         .uk-button-secondary:focus,.uk-button-secondary:hover{background-color:#d6d6d6;color:#fff}
 
@@ -46,7 +60,7 @@
 
     <!-- UIkit Navbar -->
 
-<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky" class="transparency-low">
     <nav class="uk-navbar-container uk-margin uk-position-top uk-animation-slide-top" uk-navbar>
     <div class="uk-navbar-left">
 
@@ -59,7 +73,7 @@
             <li class="uk-active"><a href="#">Find a Hotel</a></li>
             <li class="uk-active">
                 {%if user.is_authenticated %}<a href="{% url 'add_hotels' %}">Add a Hotel</a></li>{% endif %}
-
+            <li class="uk-active"><a href="{% url 'about' %}">About Us</a></li>
         </ul>
         {%if user.is_authenticated %}
             <a href="{% url 'logout' %}"><button class="uk-button uk-button-default uk-button-small uk-margin-right">Logout</button></a></p>

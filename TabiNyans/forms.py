@@ -27,3 +27,8 @@ class RegisterForm(UserCreationForm):
             'password2',
             ]
 
+class HotelSearchForm(ModelForm):
+    class Meta:
+        model = Hotel
+        fields = ['prefecture', 'city', 'high_season',
+                  'dogs', 'short_term', 'food', 'night_staff',]

@@ -4,14 +4,18 @@
 
 <!-- UIkit Container and background image-->
 <div class="uk-height-viewport uk-margin-remove uk-flex uk-flex-center uk-flex-middle uk-background-cover" uk-parallax="bgy: -200"
-     data-src="{% static 'images/sarah-dorweiler-06wMGv3GF8k-unsplash (2).jpg' %}" uk-img>
+     data-src="{% static 'images/sarah-dorweiler-06wMGv3GF8k-unsplash.jpg' %}" uk-img>
 	<!-- Text -->
 		<div class="uk-container uk-flex-auto top-container uk-position-relative uk-margin-medium-top" data-uk-parallax="y: 0,50; easing:0; opacity:0.2">
 			<div class="uk-width-1-2@s" data-uk-scrollspy="cls: uk-animation-slide-right-medium; target: > *; delay: 150">
-				<h1 class="uk-margin-remove-top poppins">Five-star treatment, for a four-legged guest.</h1>
-				<p class="subtitle-text uk-visible@s monserrat">Find cat-friendly pet all hotels across Japan. </p>
+				<h1 class="uk-margin-remove-top poppins main-header-text">Five-star treatment, for a four-legged guest.</h1>
+				<p class="subtitle-text uk-visible@s monserrat main-sub-header-text">Find, review, and share cat-friendly pet hotels all across Japan with <em>TabiNyans</em>. </p>
 				<a href="#" title="Find a Hotel" class="uk-button uk-button-secondary transparency" data-uk-scrollspy-class="uk-animation-fade">Find a Hotel</a>
+				{%if user.is_authenticated %}
+					<a href="{% url 'add_hotels' %}" title="Sign Up" class="uk-button uk-button-default" data-uk-scrollspy-class="uk-animation-fade">Add a Hotel</a></a></li>
+				{% else %}
 				<a href="{% url 'register' %}" title="Sign Up" class="uk-button uk-button-default" data-uk-scrollspy-class="uk-animation-fade">Sign Up</a>
+				{% endif %}
 			</div>
 		</div>
 </div>

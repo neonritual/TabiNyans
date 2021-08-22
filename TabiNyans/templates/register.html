@@ -1,28 +1,72 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 
-<div class="uk-container uk-margin-large-top">
-    <p>
-    <div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.username.label }}
-        <br>{{ form.username }}
-      <br>{{ form.email.label }}
-        <br>{{ form.email }}
-              <br>{{ form.password1.label }}
-        <br>{{ form.password1 }}
-             <br> {{ form.password2.label }}
-        <br>{{ form.password2 }}
-      <br> {{ form.errors }}
+<div class="uk-height-viewport uk-margin-remove uk-flex uk-flex-center uk-flex-middle uk-background-cover"
+     data-src="{% static 'images/uta-scholl-W-bi51DgwYQ-unsplash.jpg' %}" uk-img>
 
-        <button class="btn btn-primary">Submit</button>
-    </form>
-</div>
+<div class="uk-card uk-card-default uk-card-large uk-box-shadow-medium">
+    <div class="uk-card-body">
+        <h3>Sign Up</h3>
+        <hr>
+            Create a new account and join the TabiNyans community.
+        <br>
+        <br>
+    	<!-- login -->
+			<form class="toggle-class" method="POST">
+				       {% csrf_token %}
+				<fieldset class="uk-fieldset">
+					<div class="uk-margin-small">
+						<div class="uk-inline uk-width-1-1">
+							<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+							<input class="uk-input uk-border-pill" type="username" id="username" name="username" placeholder="Username">
+						</div>
+					</div>
+					<div class="uk-margin-small">
+						<div class="uk-inline uk-width-1-1">
+							<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: mail"></span>
+							<input class="uk-input uk-border-pill" type="email" id="email" name="email" placeholder="Email">
+						</div>
+					</div>
+					<div class="uk-margin-small">
+						<div class="uk-inline uk-width-1-1">
+							<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+							<input class="uk-input uk-border-pill" type="password" id="password1" name="password1" placeholder="Password">
+						</div>
+					</div>
+					<div class="uk-margin-small">
+						<div class="uk-inline uk-width-1-1">
+							<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+							<input class="uk-input uk-border-pill" type="password" id="password2" name="password2" placeholder="Confirm Password">
+						</div>
+					</div>
 
-{% for message in messages %}
-					<p id="messages">{{message}}</p>
-				{% endfor %}
+
+
+					<div class="uk-margin-small">
+						<div class="uk-inline uk-width-1-1">
+
+
+							{% if form.errors %}
+  						  <p>Username or password in invalid.</p>
+						{% endif %}
+
+
+						</div>
+					</div>
+
+
+
+
+					<div class="uk-margin-bottom">
+						<button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">Sign Up</button>
+					</div>
+				</fieldset>
+			</form>
+
+              </div>
+    </div>
+
 </div>
 
 {%endblock%}
