@@ -32,6 +32,18 @@ def index(request):
         context = {}
         return render(request, 'index.html', context)
 
+def admin_approval(request):
+
+    hotels = Hotel.objects.filter(admin_approved=False)
+    reviews = Review.objects.filter(admin_approved=False)
+    user = request.user
+    return render(request, 'approval.html', {'hotels': hotels, 'user': user, 'reviews': reviews})
+
+def hotel_approval(request):
+    hotels = Hotel.objects.filter(admin_approved=False)
+    user = request.user
+    return render(request, 'hotel_approval.html', {'hotels': hotels, 'user': user})
+
 
 @csrf_protect
 def add_hotel(request):
@@ -169,8 +181,6 @@ def search_hotels(request):
         form = HotelSearchForm()
         return render(request, 'search.html', {'form':form})
 
-
-
-
     context = {}
     return render(request, 'search.html', context)
+

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="uk-margin-large-top"><br></div>
+
+
+   <div class="uk-margin-large-top"><br><center><h1>Unapproved Hotels</h1></center></div>
+
+<div class="uk-width-1-2 uk-align-center">
+    {% for hotel in hotels %}
+    <div class="uk-text-left" uk-grid>
+            <div class="uk-width-3-4">
+                <div class="uk-card uk-card-default uk-card-body">
+
+                    <p><h2 class="uk-margin-remove-top">{{ hotel.hotel_name }}</h2></p>
+                    <p>{{ hotel.prefecture }}</p>
+
+                </div>
+             </div>
+        <div class="uk-width-1-4">
+            <div class="uk-card uk-card-default uk-card-body">
+                <button class="uk-button uk-button-primary uk-button-small uk-border-pill uk-margin-small-bottom">Approve</button>
+
+                <button class="uk-button uk-button-danger uk-button-small uk-border-pill">Delete</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{%endblock%}
