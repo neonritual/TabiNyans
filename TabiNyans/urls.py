@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
-from .views import AllHotels, HotelDetailView, AddReview, index, add_hotel, register_user, login_user, logout_user, AboutUs
+from .views import AllHotels, HotelDetailView, AddReview, index, add_hotel, register_user, login_user, logout_user, AboutUs, search_hotels
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path('register', register_user, name='register'),
     path('login', login_user, name='login'),
     path('logout', logout_user, name='logout'),
+    path('search', search_hotels, name='search'),
     path('all', AllHotels.as_view(), name="all_hotels"),
     path('about', AboutUs.as_view(), name="about"),
     path('hotel/<int:pk>', HotelDetailView.as_view(), name="hotel_detail"),

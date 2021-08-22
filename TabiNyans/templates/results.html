@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
 
-</body>
-</html>
+<div class="uk-height-viewport uk-margin-remove uk-flex uk-flex-center uk-flex-middle uk-background-cover"
+     data-src="{% static 'images/uta-scholl-W-bi51DgwYQ-unsplash.jpg' %}" uk-img>
+
+<div class="uk-card uk-card-default uk-card-large uk-box-shadow-medium">
+    <div class="uk-card-body">
+        <h3>Find a Hotel</h3>
+        <hr>
+
+			<div>
+            {% if results %}
+                {% for result in results %}
+                {{ result.hotel_name }}<br>
+                {% endfor %}
+            {% else %}
+                <p>Sorry, we can't find the right hotel! <a href="{%url 'search' %}">Try again?</a></p>
+            {% endif %}
+
+
+              </div>
+    </div>
+
+</div>
+
+{%endblock%}

@@ -4,7 +4,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.decorators.csrf import csrf_protect
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import ReviewForm, RegisterForm
+from .forms import ReviewForm, RegisterForm, HotelSearchForm, HotelForm
 from .models import Hotel, Review
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.contrib import messages
@@ -120,14 +120,57 @@ def logout_user(request):
 
 class AboutUs(TemplateView):
     template_name = "about.html"
-#
-# def search_hotels(request):
-#     if request.method == 'POST':
-#         prefecture = request.POST.get('prefecture')
-#         city = request.POST.get('city')
-#         results = Hotel.objects.filter(prefecture=prefecture) AND
-#
-#
-#
-#     context = {}
-#     return render(request, 'search.html', context)
+
+def search_hotels(request):
+    if request.method == 'POST':
+
+        if request.POST.get('prefecture'):
+            prefecture = Hotel.objects.filter(prefecture=request.POST.get('prefecture'))
+        else:
+            pass
+
+        if request.POST.get('city'):
+            city = Hotel.objects.filter(city=request.POST.get('city'))
+        else:
+            pass
+
+        if request.POST.get('high_season'):
+            high_season = Hotel.objects.filter(high_season=True)
+        else:
+            high_season = Hotel.objects.filter(high_season=True) | Hotel.objects.filter(high_season=False)
+
+        if request.POST.get('dogs'):
+            dogs = Hotel.objects.filter(dogs=True)
+        else:
+            dogs = Hotel.objects.filter(dogs=True) | Hotel.objects.filter(dogs=False)
+
+        if request.POST.get('short_term'):
+            short_term = Hotel.objects.filter(short_term=True)
+        else:
+            short_term = Hotel.objects.filter(short_term=True) | Hotel.objects.filter(short_term=False)
+
+        if request.POST.get('food'):
+            food = Hotel.objects.filter(food=True)
+        else:
+            food = Hotel.objects.filter(food=True) | Hotel.objects.filter(food=False)
+
+        if request.POST.get('night_staff'):
+            night_staff = Hotel.objects.filter(night_staff=True)
+        else:
+            night_staff = Hotel.objects.filter(night_staff=True) | Hotel.objects.filter(night_staff=False)
+
+
+
+        results=city&prefecture&high_season&dogs&short_term&food&night_staff
+
+        return render(request, 'results.html', {'results': results})
+
+    else:
+        form = HotelSearchForm()
+        return render(request, 'search.html', {'form':form})
+
+
+
+
+    context = {}
+    return render(request, 'search.html', context)

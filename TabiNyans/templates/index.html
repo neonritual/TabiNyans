@@ -10,7 +10,7 @@
 			<div class="uk-width-1-2@s" data-uk-scrollspy="cls: uk-animation-slide-right-medium; target: > *; delay: 150">
 				<h1 class="uk-margin-remove-top poppins main-header-text">Five-star treatment, for a four-legged guest.</h1>
 				<p class="subtitle-text uk-visible@s monserrat main-sub-header-text">Find, review, and share cat-friendly pet hotels all across Japan with <em>TabiNyans</em>. </p>
-				<a href="#" title="Find a Hotel" class="uk-button uk-button-secondary transparency" data-uk-scrollspy-class="uk-animation-fade">Find a Hotel</a>
+				<a href="{% url 'search' %}" title="Find a Hotel" class="uk-button uk-button-secondary transparency" data-uk-scrollspy-class="uk-animation-fade">Find a Hotel</a>
 				{%if user.is_authenticated %}
 					<a href="{% url 'add_hotels' %}" title="Sign Up" class="uk-button uk-button-default" data-uk-scrollspy-class="uk-animation-fade">Add a Hotel</a></a></li>
 				{% else %}

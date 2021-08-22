@@ -12,16 +12,15 @@
             Find the perfect hotel for your feline friend.
         <br>
         <br>
-    	<!-- login -->
-			<form class="toggle-class" method="POST">
-				       {% csrf_token %}
+			<div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media.js }}
+        {{form.as_p}}
+    <button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">Search</button>
+    </form>
+</div>
 
-
-
-
-
-					<div class="uk-margin-bottom">
-						<button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">Sign Up</button>
 					</div>
 				</fieldset>
 			</form>
