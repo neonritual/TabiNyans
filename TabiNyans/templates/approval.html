@@ -17,7 +17,7 @@
           {% if reviews %}<div class="uk-card-badge uk-label">{{ hotels.count }}</div>{% endif %}
 
             <p>You have {{ hotels.count }} hotels awaiting admin approval.</p>
-          <a class="uk-button uk-button-default uk-border-pill" href="{% url 'hotel_approval' %}">View Hotels</a>
+          <a class="uk-button uk-button-default uk-border-pill" href="{% url 'hotel_approvals' %}">View Hotels</a>
         </div>
     </div>
     <div>
@@ -25,7 +25,7 @@
             <h3 class="uk-card-title">New Reviews</h3>
           {% if reviews %}<div class="uk-card-badge uk-label">{{ reviews.count }}</div>{% endif %}
             <p>You have {{ reviews.count }} reviews awaiting admin approval.</p>
-          <a class="uk-button uk-button-default uk-border-pill" href="">View Reviews</a>
+          <a class="uk-button uk-button-default uk-border-pill" href="{% url 'review_approvals' %}">View Reviews</a>
         </div>
     </div>
 </div>

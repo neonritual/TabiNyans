@@ -96,6 +96,14 @@
     </div>
 </nav>
 </div>
+{% if messages %}
+    <div class="uk-alert-primary" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
 
 
 {% block content %}

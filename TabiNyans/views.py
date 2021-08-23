@@ -1,4 +1,6 @@
 from datetime import timezone
+
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.decorators.csrf import csrf_protect
@@ -32,17 +34,55 @@ def index(request):
         context = {}
         return render(request, 'index.html', context)
 
-def admin_approval(request):
 
+## Admin Approvals Panel ---------------
+
+def admin_approval(request):
     hotels = Hotel.objects.filter(admin_approved=False)
     reviews = Review.objects.filter(admin_approved=False)
     user = request.user
     return render(request, 'approval.html', {'hotels': hotels, 'user': user, 'reviews': reviews})
 
-def hotel_approval(request):
+## Hotel Approval and Deletion ----------
+
+def hotel_approvals(request):
     hotels = Hotel.objects.filter(admin_approved=False)
     user = request.user
     return render(request, 'hotel_approval.html', {'hotels': hotels, 'user': user})
+
+def approve_hotel(request, pk):
+    hotel = Hotel.objects.get(pk=pk)
+    hotel.admin_approved = True
+    hotel.save()
+    return redirect('hotel_approvals')
+
+def delete_hotel(request, pk):
+    hotel = Hotel.objects.get(pk=pk)
+    hotel.delete()
+    return redirect('hotel_approvals')
+
+## Review Approval and Deletion ----------
+
+def review_approvals(request):
+    if request.user.is_authenticated:
+        hotels = Hotel.objects.filter(admin_approved=False)
+        reviews = Review.objects.filter(admin_approved=False)
+        user = request.user
+
+    return render(request, 'review_approval.html', {'hotels': hotels, 'reviews': reviews, 'user': user})
+
+def approve_review(request, pk):
+    review = Review.objects.get(pk=pk)
+    review.admin_approved = True
+    review.save()
+    messages.success(request, 'Changes successfully saved.')
+    return redirect('review_approvals')
+
+def delete_review(request, pk):
+    review = Review.objects.get(pk=pk)
+    review.delete()
+    return redirect('review_approvals')
+
 
 
 @csrf_protect
