@@ -7,7 +7,11 @@
 <!--     data-src="{% static 'images/chinda-sam-x7S0DXiSY9I-unsplash.jpg' %}" uk-img>-->
 
 <div class="uk-container uk-width-1-2 uk-margin-large-top">
-  <div class="uk-margin-large-top"><h1> Welcome, {{ user.username }}. </h1></div>
+  <div class="uk-margin-large-top"><h1> Welcome,
+      {% if user.first_name %} {{ user.first_name }}
+
+      {% else %}{{ user.username }}.
+        {% endif %} </h1></div>
 
 
   <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>

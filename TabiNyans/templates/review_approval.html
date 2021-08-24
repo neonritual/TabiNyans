@@ -7,7 +7,10 @@
 
    <div class="uk-margin-large-top"><br><center><h1>Unapproved Reviews</h1></center></div>
 
+{% include 'messages.html' %}
+
 <div class="uk-width-1-2 uk-align-center">
+    {% if reviews %}
     {% for review in reviews %}
     <div class="uk-text-left" uk-grid>
             <div class="uk-width-3-4">
@@ -28,7 +31,17 @@
         </div>
     </div>
     {% endfor %}
+    {% else %}
+        <center>
+    <span uk-icon="icon: check; ratio: 3.5"></span>
+        <h2>No pending approvals.</h2>
+    </center>
+    {% endif %}
 
+</div>
+<hr class="uk-divider-icon"
+<div class="uk-container-xsmall uk-align-center">
+    <center><a href="{% url 'approvals' %}"><span uk-icon="chevron-left"></span> Return to Approvals</a></center>
 </div>
 
 {%endblock%}

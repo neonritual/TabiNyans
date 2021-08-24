@@ -7,9 +7,10 @@
 
    <div class="uk-margin-large-top"><br><center><h1>Unapproved Hotels</h1></center></div>
 
-
+{% include 'messages.html' %}
 
 <div class="uk-width-1-2 uk-align-center">
+    {% if hotels %}
     {% for hotel in hotels %}
     <div class="uk-text-left" uk-grid>
             <div class="uk-width-3-4">
@@ -17,7 +18,7 @@
 
                     <p><h2 class="uk-margin-remove-top">{{ hotel.hotel_name }}</h2></p>
                     <p>{{ hotel.prefecture }}</p>
-                    <p><a href="{% url 'hotel_detail' hotel.pk %}">hello</a></p>
+
 
                 </div>
              </div>
@@ -29,8 +30,21 @@
             </div>
         </div>
     </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
 
+    <center>
+    <span uk-icon="icon: check; ratio: 3.5"></span>
+        <h2>No pending approvals.</h2>
+    </center>
+    {% endif %}
+
+
+</div>
+</div>
+<hr class="uk-divider-icon"
+<div class="uk-container-xsmall uk-align-center">
+    <center><a href="{% url 'approvals' %}"><span uk-icon="chevron-left"></span> Return to Approvals</a></center>
 </div>
 
 {%endblock%}

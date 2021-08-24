@@ -1,27 +1,48 @@
-{% extends "base.html" %} 
+
+
+
+{% extends "base.html" %}
 {% block content %}
+{% load static %}
+
+<div class="uk-height-viewport uk-margin-remove uk-flex uk-flex-center uk-flex-middle uk-background-cover"
+     data-src="{% static 'images/chinda-sam-x7S0DXiSY9I-unsplash.jpg' %}" uk-img>
 
 
-<p>{{hotel.hotel_name}} - {{ hotel.city}}
+<div class="uk-flex uk-flex-column uk-width-1-2 uk-margin-large-top">
+     <div class="uk-card uk-card-default uk-card-body uk-margin-top">
+        <p>{{hotel.hotel_name}} - {{ hotel.city}}
 
-    <p>HELLO</p>
+    {% lorem 3 p %}
 
-<br/>------------
-<br/>
-<br>----
-<br>
-<h2>Reviews</h2>
-{% if not hotel.reviews.all %}
-    No reviews for this hotel.
-{% else %}
-    {% for review in hotel.reviews.all %}
-      {% if review.admin_approved is True %}
-    <p><strong>{{ review.author }} - {{review.pub_date}} - {{ review.rating }}</strong>
-            <p>{{ review.comment }}
-      {% endif %}
-    {% endfor %}
-{% endif %}
-{% if user.is_authenticated %}
-<p><a href="{% url 'add_review' hotel.pk %}?next={{request.path}}">Review this hotel.</a></p>
-{% endif %}
+         {{ stat.avg_rating }}
+</div>
+
+     <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-margin-bottom">
+        <h2>Reviews</h2>
+      <hr class="uk-divider-icon">
+        {% if not hotel.reviews.all %}
+
+            No reviews for this hotel.
+
+        {% else %}
+            {% for review in hotel.reviews.all %}
+              {% if review.admin_approved is True %}
+            <p><strong>{{ review.author }} - {{review.pub_date}} - {{ review.rating }}</strong>
+                    <p>{{ review.comment }}
+       </p><hr>
+              {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if user.is_authenticated %}
+       <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-margin-bottom">
+    <p><a href="{% url 'add_review' hotel.pk %}?next={{request.path}}">Review this hotel.</a></p>
+        </div>
+           {% endif %}
+    </div>
+
+</div>
+
+</div>
+
 {%endblock%}
