@@ -144,6 +144,3 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 LOGIN_URL = reverse_lazy('login')
 
-# TEMPLATE_CONTEXT_PROCESSORS = (
-#     'TabiNyans.context_processors.include_login_form'
-# )

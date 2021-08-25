@@ -1,27 +1,53 @@
-
-
-
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
 
-<div class="uk-height-viewport uk-margin-remove uk-flex uk-flex-center uk-flex-middle uk-background-cover"
-     data-src="{% static 'images/chinda-sam-x7S0DXiSY9I-unsplash.jpg' %}" uk-img>
 
 
-<div class="uk-flex uk-flex-column uk-width-1-2 uk-margin-large-top">
-     <div class="uk-card uk-card-default uk-card-body uk-margin-top">
-        <p>{{hotel.hotel_name}} - {{ hotel.city}}
 
-    {% lorem 3 p %}
+<!--## {{ hotel.hotel_name }} etc.-->
+<!--## {{ stat.avg_rating }} = average of all ratings-->
 
-         {{ stat.avg_rating }}
+<div class="uk-height-viewport uk-margin-remove uk-background-cover"
+     data-src="{% static 'images/sincerely-media-56pMIREBAcg-unsplash.jpg' %}" uk-img>
+
+
+<div class="uk-text-center uk-margin-large-top" uk-grid>
+    <div class="uk-width-1-4@m">
+        <div class=""></div>
+    </div>
+    <div class="uk-width-expand uk-margin-large-top">
+        <div class="uk-card uk-card-default">
+            {% if hotel.images %}
+                <div class="uk-height-small uk-background-cover" uk-parallax="bgy: -100"
+                data-src="{{ hotel.images.url }}" uk-img>
+            {% else %}
+                <div class="uk-height-small uk-background-cover" uk-parallax="bgy: -100"
+                data-src="{% static 'images/kate-stone-matheson-uy5t-CJuIK4-unsplash.jpg' %}" uk-img>
+            {% endif %}
+                </div>
+
+            <div class="uk-padding-small uk-text-left">
+                <center><h3 class="uk-card-title">{{ hotel.hotel_name }}</h3></center>
+                <p>{% lorem 3 p %}</p>
+            </div>
+          </div>
+
+    </div>
+    <div class="uk-width-1-4@m">
+        <div ></div>
+    </div>
 </div>
 
-     <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-margin-bottom">
-        <h2>Reviews</h2>
-      <hr class="uk-divider-icon">
-        {% if not hotel.reviews.all %}
+<div class="uk-text-center uk-margin-top" uk-grid>
+    <div class="uk-width-1-4@m">
+        <div class=""></div>
+    </div>
+    <div class="uk-width-expand uk-text-left">
+        <div class="uk-card uk-card-default uk-padding-small ">
+
+            <center><h1> Reviews</h1></center>
+                      {% if not hotel.reviews.all %}
 
             No reviews for this hotel.
 
@@ -39,10 +65,15 @@
     <p><a href="{% url 'add_review' hotel.pk %}?next={{request.path}}">Review this hotel.</a></p>
         </div>
            {% endif %}
+
+
+          </div>
+
     </div>
-
+    <div class="uk-width-1-4@m">
+        <div ></div>
+    </div>
 </div>
-
 </div>
 
 {%endblock%}
