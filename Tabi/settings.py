@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -142,3 +143,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 LOGIN_URL = reverse_lazy('login')
+
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     'TabiNyans.context_processors.include_login_form'
+# )

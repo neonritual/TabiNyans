@@ -18,7 +18,10 @@ from django.contrib.auth import authenticate, login, logout
 
 ## Basic views---
 
-def index(request):
+class IndexPage(TemplateView):
+    template_name = "index.html"
+
+def login_nav(request):
     if request.user.is_authenticated:
         return render(request, 'index.html')
     else:
@@ -30,12 +33,12 @@ def index(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('index')
+
             else:
                 messages.info(request, 'Username OR password is incorrect')
 
         context = {}
-        return render(request, 'index.html', context)
+        return render(request, 'login_nav.html', context)
 
 class AboutUs(TemplateView):
     template_name = "about.html"

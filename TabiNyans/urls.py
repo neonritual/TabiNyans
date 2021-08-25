@@ -1,18 +1,19 @@
 from django.contrib import admin
 from django.urls import include, path
-from .views import AllHotels, AddReview, index, add_hotel, register_user, login_user, logout_user, \
+from .views import AllHotels, AddReview, add_hotel, register_user, login_user, logout_user, \
     AboutUs, search_hotels, admin_approval, hotel_approvals, approve_hotel, delete_hotel, review_approvals, \
-    approve_review, delete_review, detail_view
+    approve_review, delete_review, detail_view, IndexPage, login_nav
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
-    # path('', index.as_view(), name='index'),
-    path('', index, name='index'),
+    path('', IndexPage.as_view(), name='index'),
+    # path('', index, name='index'),
     path('add', add_hotel, name='add_hotels'),
     path('register', register_user, name='register'),
     path('login', login_user, name='login'),
+    path('login_nav', login_nav, name='login_nav'),
     path('logout', logout_user, name='logout'),
     path('search', search_hotels, name='search'),
     path('approvals', admin_approval, name='approvals'),
