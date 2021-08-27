@@ -3,11 +3,12 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Avg
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 
 from . import forms
 from django.http import HttpResponse
 from .forms import RegisterForm, HotelSearchForm
-from .models import Hotel, Review
+from .models import Hotel, Review, Likes
 
 from django.views.generic import ListView, TemplateView
 from django.contrib import messages
@@ -112,8 +113,10 @@ class AllHotels(ListView):
 
 
 
+
 def detail_view(request, pk):
     context = {}
+    # form = forms.LikeForm()
     hotel = Hotel.objects.get(pk=pk)
     current_review = Review.objects.filter(hotel=hotel)
     print(current_review)
@@ -124,11 +127,32 @@ def detail_view(request, pk):
     else:
         averaged_rating = 0
 
+    if request.method == 'POST':
+        hotel = Hotel.objects.get(pk=pk)
+        author = request.user
+        if Likes.objects.filter(hotel=hotel, author=author):
+            like = Likes.objects.filter(hotel=hotel, author=author)
+            like.delete()
+            messages.success(request, 'Hotel Removed from Likes')
+            reverse_lazy('hotel_detail')
+        else:
+
+            like = Likes.objects.create(hotel=hotel, author=author)
+            like.save()
+            messages.success(request, 'Hotel Added to Likes')
+            reverse_lazy('hotel_detail')
+
+    else:
+        hotel = Hotel.objects.get(id=pk)
+        reverse_lazy('hotel_detail')
+
+
     context["hotel"] = hotel
     context["reviews"] = Review.objects.all()
     context["averaged_rating"] = averaged_rating
-
-
+    if Likes.objects.filter(hotel=hotel, author=author):
+        context["like"] = Likes.objects.filter(hotel=hotel, author=author)
+    # context["form"] = form
 
     return render(request, "hotel.html", context)
 

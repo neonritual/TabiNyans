@@ -25,15 +25,27 @@
             {% endif %}
                 </div>
 
+{% include 'messages.html' %}
+
             <div class="uk-padding-small uk-text-left">
                 <center><h3 class="uk-card-title">{{ hotel.hotel_name }}</h3></center>
                 <p>
                 <!--- STATIC RATING --->
-                 <h3>Rated element name</h3>
+
                   <p class="starability-result" data-rating="{{ averaged_rating }}">
-                    Rated: 3 stars
+
                   </p>
                 <!--- END STATIC RATING --->
+
+                <!-- LIKE BUTTON -->
+                <p>
+                <form method="POST" action="{% url 'hotel_detail' hotel.pk %}">
+                <button class="btn"> {% csrf_token %} <i class="
+                {% if like %} after-like
+                 {% else %} before-like
+                 {% endif %} fas fa-heart fa-2x" name="Submit" id="Submit"></i></button></a>
+            </form></p>
+                <!-- END LIKE BUTTON -->
 
                 </p>
             </div>

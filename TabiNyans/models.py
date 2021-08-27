@@ -49,6 +49,13 @@ class Hotel(models.Model):
     def __str__(self):
         return self.hotel_name
 
+class Likes(models.Model):
+    hotel = models.ForeignKey(Hotel, related_name="liked_hotels", on_delete=models.DO_NOTHING)
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return '%s - %s' % (self.hotel, self.author)
+
 
 class Review(models.Model):
     RATING_CHOICES = (

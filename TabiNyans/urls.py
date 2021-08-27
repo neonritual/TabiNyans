@@ -23,4 +23,5 @@ urlpatterns = [
     path('about', AboutUs.as_view(), name="about"),
     path('hotel/<int:pk>', detail_view, name="hotel_detail"),
     path('hotel/<int:pk>/review', review_hotel, name="add_review"),
+
 ]
