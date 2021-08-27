@@ -3,8 +3,6 @@
 {% load static %}
 
 
-
-
 <!--## {{ hotel.hotel_name }} etc.-->
 <!--## {{ stat.avg_rating }} = average of all ratings-->
 
@@ -29,7 +27,15 @@
 
             <div class="uk-padding-small uk-text-left">
                 <center><h3 class="uk-card-title">{{ hotel.hotel_name }}</h3></center>
-                <p>{% lorem 3 p %}</p>
+                <p>
+                <!--- STATIC RATING --->
+                 <h3>Rated element name</h3>
+                  <p class="starability-result" data-rating="{{ averaged_rating }}">
+                    Rated: 3 stars
+                  </p>
+                <!--- END STATIC RATING --->
+
+                </p>
             </div>
           </div>
 

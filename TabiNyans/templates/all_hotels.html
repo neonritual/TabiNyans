@@ -3,7 +3,9 @@
 
 {% for hotel in object_list %}
 
+<div class="uk-margin-large-top">
 <p><a href="{% url 'hotel_detail' hotel.pk %}">{{hotel.hotel_name}} - {{ hotel.city}}</a>
+</p></div>
 
 {% endfor %}
 

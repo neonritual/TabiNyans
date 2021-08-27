@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<br><br>
+
+
+<div class="uk-height-viewport uk-margin-remove uk-background-cover"
+     data-src="{% static 'images/sincerely-media-56pMIREBAcg-unsplash.jpg' %}" uk-img>
+
+
+<div class="uk-text-center uk-margin-large-top" uk-grid>
+    <div class="uk-width-1-4@m">
+        <div class=""></div>
+    </div>
+    <div class="uk-width-expand uk-margin-large-top">
+        <div class="uk-card uk-card-default">
+
+            <div class="uk-padding-small uk-text-left">
+                <center><h3 class="uk-card-title">{{ hotel.hotel_name }}</h3></center>
+                <p>
+
+
+
+                </p>
+            </div>
+          </div>
+
+    </div>
+    <div class="uk-width-1-4@m">
+        <div ></div>
+    </div>
+</div>
+
+<div class="uk-text-center uk-margin-top" uk-grid>
+    <div class="uk-width-1-4@m">
+        <div class=""></div>
+    </div>
+
+    <div class="uk-width-expand uk-text-left">
+        <div class="uk-card uk-card-default uk-padding-small ">
+
+            <p>Thank you for your submission! Your review is now pending.</p>
+            <p>Return to <a href="{% url 'hotel_detail' hotel.pk %}">{{ hotel.hotel_name }}</a></p>
+
+          </div>
+
+    </div>
+    <div class="uk-width-1-4@m">
+        <div ></div>
+    </div>
+</div>
+</div>
+
+
+
+{%endblock%}

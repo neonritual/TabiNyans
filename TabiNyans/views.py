@@ -1,16 +1,15 @@
-from datetime import timezone
+
 
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Avg
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy, reverse
-from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import render, redirect
+
 from . import forms
-from django.http import HttpResponse, HttpResponseRedirect
-from .forms import ReviewForm, RegisterForm, HotelSearchForm, HotelForm
+from django.http import HttpResponse
+from .forms import RegisterForm, HotelSearchForm
 from .models import Hotel, Review
 
-from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.views.generic import ListView, TemplateView
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
@@ -116,31 +115,42 @@ class AllHotels(ListView):
 def detail_view(request, pk):
     context = {}
     hotel = Hotel.objects.get(pk=pk)
+    current_review = Review.objects.filter(hotel=hotel)
+    print(current_review)
 
+    if current_review:
+        stat = Review.objects.filter(hotel=hotel).aggregate(avg_rating=Avg('rating'))
+        averaged_rating = int(round(stat['avg_rating'] * 2.0) / 2.0)
+    else:
+        averaged_rating = 0
 
-    stat = Review.objects.filter(hotel=hotel).aggregate(avg_rating=Avg('rating'))
-
-    # add the dictionary during initialization
     context["hotel"] = hotel
     context["reviews"] = Review.objects.all()
-    context["stat"] = stat
+    context["averaged_rating"] = averaged_rating
+
+
 
     return render(request, "hotel.html", context)
 
 
-class AddReview(CreateView):
-    model = Review
-    form_class = ReviewForm
-    template_name = 'review.html'
+def review_hotel(request, **kwargs):
+    hotel = Hotel.objects.get(id=kwargs['pk'])
+    if request.method == 'POST':
+        form = forms.ReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            temp = form.save(commit=False)
+            temp.author = request.user
+            temp.hotel = Hotel.objects.get(id=kwargs['pk'])
+            temp.save()
+            return render(request, 'review_complete.html', {'hotel': hotel })
+        else:
+            messages.success(request, 'Invalid Review.')
 
-    def form_valid(self, form):
-        form.instance.hotel = Hotel.objects.get(id=self.kwargs['pk'])
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+    else:
+        form = forms.HotelForm()
+        hotel = Hotel.objects.get(id=kwargs['pk'])
+    return render(request, 'review.html', {'form': form, 'hotel':hotel})
 
-    #
-    def get_success_url(self):
-        return reverse('hotel_detail', kwargs={"pk": self.kwargs['pk']})
 
 
 ## Search functionality -------

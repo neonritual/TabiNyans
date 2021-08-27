@@ -1,15 +1,11 @@
-from django.contrib import admin
-from django.urls import include, path
-from .views import AllHotels, AddReview, add_hotel, register_user, login_user, logout_user, \
+from django.urls import path
+from .views import AllHotels, add_hotel, register_user, login_user, logout_user, \
     AboutUs, search_hotels, admin_approval, hotel_approvals, approve_hotel, delete_hotel, review_approvals, \
-    approve_review, delete_review, detail_view, IndexPage, login_nav
-from django.conf import settings
-from django.conf.urls.static import static
+    approve_review, delete_review, detail_view, IndexPage, login_nav, review_hotel
 
 
 urlpatterns = [
     path('', IndexPage.as_view(), name='index'),
-    # path('', index, name='index'),
     path('add', add_hotel, name='add_hotels'),
     path('register', register_user, name='register'),
     path('login', login_user, name='login'),
@@ -26,6 +22,5 @@ urlpatterns = [
     path('all', AllHotels.as_view(), name="all_hotels"),
     path('about', AboutUs.as_view(), name="about"),
     path('hotel/<int:pk>', detail_view, name="hotel_detail"),
-    # path('hotel/<int:pk>', HotelDetailView.as_view(), name="hotel_detail"),
-    path('hotel/<int:pk>/review', AddReview.as_view(), name="add_review"),
+    path('hotel/<int:pk>/review', review_hotel, name="add_review"),
 ]

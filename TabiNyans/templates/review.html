@@ -1,16 +1,125 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 <br><br>
-{%if user.is_authenticated %}
-    <p>
-    <div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary">Submit</button>
-    </form>
+
+
+<div class="uk-height-viewport uk-margin-remove uk-background-cover"
+     data-src="{% static 'images/sincerely-media-56pMIREBAcg-unsplash.jpg' %}" uk-img>
+
+
+<div class="uk-text-center uk-margin-large-top" uk-grid>
+    <div class="uk-width-1-4@m">
+        <div class=""></div>
+    </div>
+    <div class="uk-width-expand uk-margin-large-top">
+        <div class="uk-card uk-card-default">
+
+            <div class="uk-padding-small uk-text-left">
+                <center><h3 class="uk-card-title">{{ hotel.hotel_name }}</h3></center>
+                <p>
+
+
+
+                </p>
+            </div>
+          </div>
+
+    </div>
+    <div class="uk-width-1-4@m">
+        <div ></div>
+    </div>
 </div>
-{% else %}
-Please login to review this hotel.
-{% endif %}
-{%endblock%}
+
+<div class="uk-text-center uk-margin-top" uk-grid>
+    <div class="uk-width-1-4@m">
+        <div class=""></div>
+    </div>
+
+    <div class="uk-width-expand uk-text-left">
+        <div class="uk-card uk-card-default uk-padding-small ">
+
+{% include 'messages.html' %}
+
+{%if user.is_authenticated %}
+              <form method="POST">
+    {% csrf_token %}
+            <fieldset class="uk-fieldset">
+
+
+
+                            <fieldset class="starability-basic">
+                  <legend>Hotel Rating:</legend>
+                  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                  <input type="radio" id="second-rate1" name="rating" value="1" />
+                  <label for="second-rate1" title="Terrible">1 star</label>
+                  <input type="radio" id="second-rate2" name="rating" value="2" />
+                  <label for="second-rate2" title="Not good">2 stars</label>
+                  <input type="radio" id="second-rate3" name="rating" value="3" />
+                  <label for="second-rate3" title="Average">3 stars</label>
+                  <input type="radio" id="second-rate4" name="rating" value="4" />
+                  <label for="second-rate4" title="Very good">4 stars</label>
+                  <input type="radio" id="second-rate5" name="rating" value="5" />
+                  <label for="second-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+
+<!-- END STAR RATING -->
+        <div class="uk-margin">
+            <textarea class="uk-textarea" rows="3" name="comment" placeholder="Review"></textarea>
+        </div>
+    </fieldset>
+                      <button class="uk-button uk-button-default">Submit</button>
+</form>
+
+
+        {% else %}
+        Please login to review this hotel.
+        {% endif %}
+
+          </div>
+
+    </div>
+    <div class="uk-width-1-4@m">
+        <div ></div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+<!--&lt;!&ndash; STAR RATING (for latr use) -&ndash;&gt;-->
+<!--                    <fieldset class="starability-basic">-->
+<!--                  <legend>First rating:</legend>-->
+<!--                  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />-->
+<!--                  <input type="radio" id="second-rate1" name="rating" value="1" />-->
+<!--                  <label for="second-rate1" title="Terrible">1 star</label>-->
+<!--                  <input type="radio" id="second-rate2" name="rating" value="2" />-->
+<!--                  <label for="second-rate2" title="Not good">2 stars</label>-->
+<!--                  <input type="radio" id="second-rate3" name="rating" value="3" />-->
+<!--                  <label for="second-rate3" title="Average">3 stars</label>-->
+<!--                  <input type="radio" id="second-rate4" name="rating" value="4" />-->
+<!--                  <label for="second-rate4" title="Very good">4 stars</label>-->
+<!--                  <input type="radio" id="second-rate5" name="rating" value="5" />-->
+<!--                  <label for="second-rate5" title="Amazing">5 stars</label>-->
+<!--                    </fieldset>-->
+
+<!--&lt;!&ndash; END STAR RATING &ndash;&gt;-->
+
+<!--{%if user.is_authenticated %}-->
+<!--    <p>-->
+<!--    <div class="form-group">-->
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p }}-->
+<!--        <button class="btn btn-primary">Submit</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!--{% else %}-->
+<!--Please login to review this hotel.-->
+<!--{% endif %}-->
+
+
+
+<!--{%endblock%}-->
