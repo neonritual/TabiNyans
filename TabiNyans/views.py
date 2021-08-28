@@ -116,7 +116,6 @@ class AllHotels(ListView):
 
 def detail_view(request, pk):
     context = {}
-    # form = forms.LikeForm()
     hotel = Hotel.objects.get(pk=pk)
     author = request.user
     current_review = Review.objects.filter(hotel=hotel)
@@ -153,7 +152,6 @@ def detail_view(request, pk):
     if request.user.is_authenticated:
         if Likes.objects.filter(hotel=hotel, author=author):
             context["like"] = Likes.objects.filter(hotel=hotel, author=author)
-    # context["form"] = form
 
     return render(request, "hotel.html", context)
 

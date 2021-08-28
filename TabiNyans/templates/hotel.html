@@ -37,11 +37,13 @@
                   </p>
                 <!--- END STATIC RATING --->
 
-                <!-- LIKE BUTTON -->
+
+
+                 <!-- LIKE BUTTON -->
                 {% if user.is_authenticated %}
                 <p>
                 <form method="POST" action="{% url 'hotel_detail' hotel.pk %}">
-                <button class="btn"> {% csrf_token %} <i class="
+                <button class="round-button-nonuk"> {% csrf_token %} <i class="
                 {% if like %} after-like
                  {% else %} before-like
                  {% endif %} fas fa-heart fa-2x" name="Submit" id="Submit"></i></button></a>
