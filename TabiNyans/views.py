@@ -118,6 +118,7 @@ def detail_view(request, pk):
     context = {}
     # form = forms.LikeForm()
     hotel = Hotel.objects.get(pk=pk)
+    author = request.user
     current_review = Review.objects.filter(hotel=hotel)
     print(current_review)
 
@@ -127,20 +128,19 @@ def detail_view(request, pk):
     else:
         averaged_rating = 0
 
-    if request.method == 'POST':
-        hotel = Hotel.objects.get(pk=pk)
-        author = request.user
-        if Likes.objects.filter(hotel=hotel, author=author):
-            like = Likes.objects.filter(hotel=hotel, author=author)
-            like.delete()
-            messages.success(request, 'Hotel Removed from Likes')
-            reverse_lazy('hotel_detail')
-        else:
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            if Likes.objects.filter(hotel=hotel, author=author):
+                like = Likes.objects.filter(hotel=hotel, author=author)
+                like.delete()
+                messages.success(request, 'Hotel Removed from Likes')
+                reverse_lazy('hotel_detail')
+            else:
 
-            like = Likes.objects.create(hotel=hotel, author=author)
-            like.save()
-            messages.success(request, 'Hotel Added to Likes')
-            reverse_lazy('hotel_detail')
+                like = Likes.objects.create(hotel=hotel, author=author)
+                like.save()
+                messages.success(request, 'Hotel Added to Likes')
+                reverse_lazy('hotel_detail')
 
     else:
         hotel = Hotel.objects.get(id=pk)
@@ -150,8 +150,9 @@ def detail_view(request, pk):
     context["hotel"] = hotel
     context["reviews"] = Review.objects.all()
     context["averaged_rating"] = averaged_rating
-    if Likes.objects.filter(hotel=hotel, author=author):
-        context["like"] = Likes.objects.filter(hotel=hotel, author=author)
+    if request.user.is_authenticated:
+        if Likes.objects.filter(hotel=hotel, author=author):
+            context["like"] = Likes.objects.filter(hotel=hotel, author=author)
     # context["form"] = form
 
     return render(request, "hotel.html", context)
