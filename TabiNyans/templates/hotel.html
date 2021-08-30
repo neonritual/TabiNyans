@@ -7,7 +7,8 @@
 <!--## {{ stat.avg_rating }} = average of all ratings-->
 
 <div class="uk-height-viewport uk-margin-remove uk-background-cover"
-     data-src="{% static 'images/sincerely-media-56pMIREBAcg-unsplash.jpg' %}" uk-img>
+     data-src="{% static 'images/sincerely-media-56pMIREBAcg-unsplash.jpg' %}" uk-img
+     xmlns="http://www.w3.org/1999/html">
 
 
 <div class="uk-text-center uk-margin-large-top" uk-grid>
@@ -34,6 +35,7 @@
                 <i class="hotel-title">{{ hotel.hotel_name }}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <i class="hotel-subtitle">{{ hotel.city }}</i>
                 </center>
+                <br>
 
                 <table class="uk-table">
                     <tbody></tbody>
@@ -49,12 +51,15 @@
                                   <!-- LIKE BUTTON -->
                                         {% if user.is_authenticated %}
                                         <form method="POST" action="{% url 'hotel_detail' hotel.pk %}">
-                                        <button class="uk button uk-border-pill"> {% csrf_token %} Add to Likes <i class="
+                                       {% csrf_token %} <button class="like-button" alt="Save This Hotel to Likes"><i class="
                                         {% if like %} after-like
                                          {% else %} before-like
-                                         {% endif %} fas fa-heart fa-2x" name="Submit" id="Submit"></i></button></a>
+                                         {% endif %} fas fa-heart fa-2x" ></button></i></a>
                                           </form>
                                         {% endif %}
+
+
+
                                 <!-- END LIKE BUTTON -->
 
                             </td>
@@ -64,24 +69,24 @@
             </div>
     <div>
 
-                <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+                <div class="uk-grid-small uk-child-width-expand@s uk-text-center  uk-margin-remove" uk-grid>
                     <div>
-                        <div class="uk-card uk-card-body uk-text-left uk-padding-small">
+                        <div class="uk-card uk-card-body uk-text-left uk-padding-small uk-margin-remove">
                             <!-- HOTEL INFO -->
 
                             <section style="display: table;">
 
                               <div style="display: table-row;">
-                                <div style="display: table-cell; padding: 10px;">City: </div>
-                                <div style="display: table-cell;  padding: 5px;">{{ hotel.city }}</div>
+                                  <div style="display: table-cell; padding: 10px; width: 50%; color: #b07282; text-transform: uppercase;">City: </div>
+                                <div style="display: table-cell;  padding: 5px; width: 50%;">{{ hotel.city }}</div>
                               </div>
                               <div style="display: table-row;">
-                                <div style="display: table-cell;  padding: 10px;">Address: </div>
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Address: </div>
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.address }}</div>
                               </div>
 
                               <div style="display: table-row;">
-                                <div style="display: table-cell; padding: 10px;">Website: </div>
+                                <div style="display: table-cell; padding: 10px; color: #b07282; text-transform: uppercase;">Website: </div>
                                 <div style="display: table-cell; padding: 10px;">{% if hotel.website_url %}
                                                      <a href="{{ hotel.website_url }}">{{ hotel.website_url }}</a>
                                                     {% else %}
@@ -89,46 +94,46 @@
                                                     {% endif %}</div>
                               </div>
                                 <div style="display: table-row;">
-                                <div style="display: table-cell;  padding: 10px;">Hours: </div>
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Hours: </div>
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.hours }}</div>
                               </div>
                                 <div style="display: table-row;">
-                                <div style="display: table-cell;  padding: 10px;">High Season Rate: </div>
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">High Season Rate: </div>
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.high_season }}</div>
                               </div>
                                 <div style="display: table-row;">
-                                <div style="display: table-cell;  padding: 10px;">Dogs on Premises: </div>
+                                <div style="display: table-cell;  padding: 10px;  color: #b07282; text-transform: uppercase;">Dogs on Premises: </div>
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.dogs }}</div>
                               </div>
                                 <div style="display: table-row;">
-                                <div style="display: table-cell;  padding: 10px;">Short Term Available: </div>
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Short Term Available: </div>
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.short_term }}</div>
                               </div>
                                 <div style="display: table-row;">
-                                <div style="display: table-cell;  padding: 10px;">Food Service Available: </div>
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Food Service Available: </div>
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.food }}</div>
                               </div>
                                 <div style="display: table-row;">
-                                <div style="display: table-cell;  padding: 10px;">24 Hour Staff: </div>
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">24 Hour Staff: </div>
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.night_staff }}</div>
                               </div>
                                 <div style="display: table-row;">
-                                <div style="display: table-cell;  padding: 10px;">Special Service: </div>
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Special Service: </div>
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.specials }}</div>
                               </div>
                                 <div style="display: table-row;">
-                                <div style="display: table-cell;  padding: 10px;">Other Information: </div>
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Other Information: </div>
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.extra }}</div>
                               </div>
 
                             </section>
 
-
+                        <br><br>
 
                         </div>
                     </div>
                     <div>
-                        <div class="uk-card uk-card-body uk-padding-small" >
+                        <div class="uk-card uk-card-body uk-padding-small  uk-margin-remove" >
                             <!-- HOTEL LOGO -->
                             {% if hotel.logo %}
                             <img src="{{ hotel.logo.url }}" width="200px" uk-img>
@@ -138,22 +143,11 @@
                         </div>
                         <!-- GOOGLE MAPS STATIC API -->
 <!--                        <br>-->
-<!--                        <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ hotel.address }}&zoom=14&size=300x300&key={{ GOOGLE_API }}">-->
-<!--                        <br>-->
+<!--                        <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ hotel.city }}{{ hotel.address }}&zoom=14&size=300x300&key={{ GOOGLE_API }}">-->
+<!--                        <br><br>-->
                         <!-- GOOGLE MAPS STATIC API END -->
 
-                        <!-- GOOGLE MAPS EMBED API -->
-<!--                        <br>-->
-<!--                        <div class="uk-margin-bottom">-->
-<!--                        <iframe-->
-<!--                          width="300"-->
-<!--                          height="300"-->
-<!--                          frameborder="0" style="border:0"-->
-<!--                          src="https://www.google.com/maps/embed/v1/place?key={{ GOOGLE_API }}&q={{ hotel.address }}" allowfullscreen>-->
-<!--                        </iframe>-->
-<!--                        </div>-->
-                        <!-- GOOGLE MAPS EMBED API END -->
-
+                    <br>
                     </div>
                 </div>
 
@@ -182,7 +176,7 @@
         {% else %}
             {% for review in hotel.reviews.all %}
               {% if review.admin_approved is True %}
-            <p><strong>{{ review.author }} - {{review.pub_date}} - {{ review.rating }}</strong>
+            <p><strong>{{ review.author }} - {{review.pub_date}} </strong>
                     <p>{{ review.comment }}
        </p><hr>
               {% endif %}

@@ -1,25 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% extends 'base.html' %}
-    <meta charset="UTF-8">
-
-
+{% extends "base.html" %}
 {% block content %}
+{% load static %}
+
+
+
 <body>
+<div class="uk-height-viewport uk-margin-remove uk-background-cover"
+     data-src="{% static 'images/sincerely-media-56pMIREBAcg-unsplash.jpg' %}" uk-img
+     xmlns="http://www.w3.org/1999/html">
 
-<div class="uk-container uk-margin-large-top">
+
+<div class="uk-margin-large-top" uk-grid>
     <br>
-<h1>Add Hotel</h1>
-
-<div>
-    <form method="POST" enctype="multipart/form-data">
+    <div class="uk-width-expand"> <!-- left div margin --></div>
+    <div class="uk-width-1-2@m" style="background-color: #FFF">
+    <br>
+        <h1>Add Hotel</h1>
+        <div style="border-left: 6px solid gray; padding: 30px;">
+            <p>Add a new hotel for others to search for and review.</p>
+        <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media.js }}
         {{form.as_p}}
-        <button class="btn btn-primary">Submit</button>
+        <button class="uk-button uk-button-primary">Submit</button>
     </form>
+        </div>
+        <br>
+
+
+
+
+    </div>
+    <div class="uk-width-expand"><!-- right  div margin --></div>
 </div>
+
 
 </body>
 </div>
