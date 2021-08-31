@@ -1,6 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 
 
+<!--<div class="uk-height-viewport uk-margin-remove uk-flex uk-flex-center uk-flex-middle uk-background-cover"-->
+<!--     data-src="{% static 'images/chinda-sam-x7S0DXiSY9I-unsplash.jpg' %}" uk-img>-->
+
+<div class="uk-container uk-width-1-2 uk-margin-large-top">
+  <div class="uk-margin-large-top"><h1 class="poppins"> Welcome,
+      {% if user.first_name %} {{ user.first_name }}
+
+      {% else %}{{ user.username }}.
+        {% endif %} </h1></div>
+
+
+  <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body">
+            <h3 class="uk-card-title montserrat"><span uk-icon="icon: user; ratio: 1.4;"></span> My Account</h3>
+            <hr>
+            <p><span uk-icon="file-edit"></span> Set nickname</p>
+            <p><span uk-icon="lock"></span> Change password</p>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body">
+            <h3 class="uk-card-title montserrat"><span uk-icon="icon: heart;  ratio: 1.4;"></span> Favorites</h3>
+            <hr>
+            {% if likes %}
+            {% for like in likes %}
+                <a href="{% url 'hotel_detail' like.hotel.pk %}">
+                - {{ like.hotel }} - {{ like.hotel.city }}</a><br>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+</div>
 
 {%endblock%}

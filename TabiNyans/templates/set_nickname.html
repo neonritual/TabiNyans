@@ -15,17 +15,15 @@
     <div class="uk-width-expand"> <!-- left div margin --></div>
     <div class="uk-width-1-3@m" style="background-color: #FFF">
     <br>
-        <h1 class="main-header-text poppins">Add Hotel</h1>
-          <p>Add a new hotel for others to search for and review.</p>
+        <h1 class="main-header-text poppins">Success</h1>
+
         <div style="border-left: 6px solid gray; padding-left: 10px;">
 
-        <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.media.js }}
-        {{form.as_p}}
+                <p>Thank you, {% if user.first_name %} {{ user.first_name }}
+                {% else %}{{ user.username }}
+                {% endif %}! Your hotel submission is now pending. </p>
 
-        <button class="uk-button uk-button-default">Submit</button>
-    </form>
+            <a href="{% url 'index' %}" class="uk-link-muted"><span uk-icon="chevron-double-right"></span>Return</a>
         </div>
                     <br>
             <br>

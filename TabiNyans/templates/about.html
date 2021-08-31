@@ -1,5 +1,6 @@
 {% extends "base.html" %} 
 {% block content %}
+{% load static %}
 
 <h1>Cats!</h1>
 
@@ -10,4 +11,6 @@
 
 <p>Accessible Star Ratings by <a href="https://github.com/LunarLogic/starability">Starability.</a></p>
 
+<img class="uk-border-circle" src="{% static 'IMG_1476.jpg' %}" width="200" height="200" alt="Border circle">
+<img class="uk-border-circle" src="{% static 'IMG_1482.jpg' %}" width="200" height="200" alt="Border circle">
 {% endblock %}

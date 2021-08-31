@@ -41,6 +41,10 @@ def login_nav(request):
 class AboutUs(TemplateView):
     template_name = "about.html"
 
+def userpage(request):
+    user = request.user
+    likes = Likes.objects.filter(author=user)
+    return render(request, 'userpage.html', {'user': user, 'likes': likes})
 
 ## User Registration/Login/Logout -------
 
@@ -99,10 +103,11 @@ def add_hotel(request):
             temp = form.save(commit=False)
             temp.author = request.user
             temp.save()
-            return HttpResponse("Submission complete.")
+            return render(request, 'add_hotel_success.html')
     else:
         form = forms.HotelForm()
     return render(request, 'add_hotel.html', {'form': form})
+
 
 
 class AllHotels(ListView):
