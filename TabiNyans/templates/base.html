@@ -39,6 +39,15 @@
         opacity: .5;
         }
 
+        a {
+        color: #8c5d5d;
+        }
+
+        a:hover {
+        color: #ed8585;
+        text-decoration: none;
+        }
+
         .hotel-title {
         font-size: 3em;
 
@@ -121,9 +130,13 @@
                     </a></li>
                 {% endif %}
             {% endfor %}
+            {% if user.is_authenticated %}
+            <li class="uk-active"><a href="{% url 'userpage' %}">
+                        <button class="uk-button uk-button-default uk-button-small uk-margin-right">My account</button>
+                    </a></li>{% endif %}
             <li class="uk-active"><a href="{% url 'search' %}">Find a Hotel</a></li>
             <li class="uk-active">
-                {%if user.is_authenticated %}<a href="{% url 'add_hotels' %}">Add a Hotel</a></li>{% endif %}
+                {% if user.is_authenticated %}<a href="{% url 'add_hotels' %}">Add a Hotel</a></li>{% endif %}
             <li class="uk-active"><a href="{% url 'about' %}">About Us</a></li>
         </ul>
 

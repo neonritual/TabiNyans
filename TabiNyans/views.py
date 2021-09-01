@@ -1,5 +1,6 @@
 
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Avg
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -9,7 +10,7 @@ from .forms import RegisterForm, HotelSearchForm
 from .models import Hotel, Review, Likes
 from django.views.generic import ListView, TemplateView
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from secretsecret import GOOGLE_API
 
 
@@ -40,11 +41,6 @@ def login_nav(request):
 
 class AboutUs(TemplateView):
     template_name = "about.html"
-
-def userpage(request):
-    user = request.user
-    likes = Likes.objects.filter(author=user)
-    return render(request, 'userpage.html', {'user': user, 'likes': likes})
 
 ## User Registration/Login/Logout -------
 
@@ -93,6 +89,38 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('index')
+
+## Userpage
+
+def userpage(request):
+    user = request.user
+    likes = Likes.objects.filter(author=user)
+    return render(request, 'userpage.html', {'user': user, 'likes': likes})
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('userpage')
+        else:
+            messages.error(request, 'Check your password and try again.')
+
+    else:
+        form = PasswordChangeForm(request.user)
+        return render(request, 'change_password.html', {'form': form })
+
+def set_nickname(request):
+    if request.method == 'POST':
+        user = request.user
+        user.first_name = request.POST.get('nickname')
+        user.save()
+        messages.success(request, 'Successfully added a nickname.')
+        return redirect('userpage')
+    else:
+        return render(request, 'set_nickname.html')
 
 ## Adding and viewing Hotels/Reviews ----
 

@@ -13,14 +13,15 @@
       {% else %}{{ user.username }}.
         {% endif %} </h1></div>
 
+        {% include 'messages.html' %}
 
   <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
     <div>
         <div class="uk-card uk-card-default uk-card-body">
             <h3 class="uk-card-title montserrat"><span uk-icon="icon: user; ratio: 1.4;"></span> My Account</h3>
             <hr>
-            <p><span uk-icon="file-edit"></span> Set nickname</p>
-            <p><span uk-icon="lock"></span> Change password</p>
+            <p><a href="{% url 'set_nickname' %}"><span uk-icon="file-edit"></span> Set nickname</a></p>
+            <p><a href="{% url 'change_password' %}"><span uk-icon="lock"></span> Change password</a></p>
         </div>
     </div>
     <div>

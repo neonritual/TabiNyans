@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import AllHotels, add_hotel, register_user, login_user, logout_user, \
     AboutUs, search_hotels, admin_approval, hotel_approvals, approve_hotel, delete_hotel, review_approvals, \
-    approve_review, delete_review, detail_view, IndexPage, login_nav, review_hotel, userpage
+    approve_review, delete_review, detail_view, IndexPage, login_nav, review_hotel, userpage, change_password, \
+    set_nickname
 
 urlpatterns = [
     path('', IndexPage.as_view(), name='index'),
@@ -12,6 +13,8 @@ urlpatterns = [
     path('logout', logout_user, name='logout'),
     path('search', search_hotels, name='search'),
     path('userpage', userpage, name='userpage'),
+    path('set_nickname', set_nickname, name='set_nickname'),
+    path('change_password', change_password, name='change_password'),
     path('approvals', admin_approval, name='approvals'),
     path('hotel_approvals', hotel_approvals, name='hotel_approvals'),
     path('approve_hotel/<int:pk>', approve_hotel, name="approve_hotel"),
