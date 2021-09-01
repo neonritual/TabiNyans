@@ -2,27 +2,66 @@
 {% block content %}
 {% load static %}
 
-<div class="uk-height-viewport uk-margin-remove uk-flex uk-flex-center uk-flex-middle uk-background-cover"
-     data-src="{% static 'images/uta-scholl-W-bi51DgwYQ-unsplash.jpg' %}" uk-img>
 
-<div class="uk-card uk-card-default uk-card-large uk-box-shadow-medium">
-    <div class="uk-card-body">
-        <h3>Find a Hotel</h3>
-        <hr>
+<!--## {{ hotel.hotel_name }} etc.-->
+<!--## {{ stat.avg_rating }} = average of all ratings-->
+
+<div class="uk-height-viewport uk-margin-remove uk-background-cover"
+     data-src="{% static 'images/sincerely-media-56pMIREBAcg-unsplash.jpg' %}" uk-img
+     xmlns="http://www.w3.org/1999/html">
+
+
+<div class="uk-text-center uk-margin-large-top" uk-grid>
+    <div class="uk-width-1-4@m">
+        <div class=""><!-- Empty Grid Left 1 --></div>
+    </div>
+    <div class="uk-width-expand uk-margin-large-top">
+        <div class="uk-card uk-card-default">
+
+                <div class="uk-height-small uk-background-cover" uk-parallax="bgy: 0"
+                data-src="{% static 'images/kate-stone-matheson-uy5t-CJuIK4-unsplash.jpg' %}" uk-img>
+                    </div>
+
+            {% include 'messages.html' %}
+
+            <div class="uk-padding-small uk-text-left">
+              <h1 class="poppins">Find a Hotel</h1>
+             <hr class="uk-divider-icon">
 
 			<div>
             {% if results %}
                 {% for result in results %}
-                {{ result.hotel_name }}<br>
+                <h3><a href="{% url 'hotel_detail' result.pk %}">{{ result.hotel_name }}</h3></a>
+                <div class="uk-text-small">Address: {{ result.address }}
+                <br>Hours: {{ result.hours }}</div>
+                <hr>
+
                 {% endfor %}
             {% else %}
                 <p>Sorry, we can't find the right hotel! <a href="{%url 'search' %}">Try again?</a></p>
             {% endif %}
+            </div>
+                    <br>
+                    </div>
+                </div>
 
 
-              </div>
+    </div>
+    <div class="uk-width-1-4@m">
+        <div ><!-- Empty Grid Right 1 --></div>
+    </div>
+</div>
+
+<div class="uk-text-center uk-margin-top" uk-grid>
+    <div class="uk-width-1-4@m">
+        <div class=""> <!-- Empty Grid Left 2--></div>
     </div>
 
+    <div class="uk-width-1-4@m">
+        <div><!-- Empty Grid Right 2--></div>
+    </div>
+</div>
+    <br>
 </div>
 
 {%endblock%}

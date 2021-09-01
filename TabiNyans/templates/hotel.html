@@ -99,23 +99,53 @@
                               </div>
                                 <div style="display: table-row;">
                                 <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">High Season Rate: </div>
-                                <div style="display: table-cell; padding: 10px;">{{ hotel.high_season }}</div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.high_season == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
                               </div>
                                 <div style="display: table-row;">
                                 <div style="display: table-cell;  padding: 10px;  color: #b07282; text-transform: uppercase;">Dogs on Premises: </div>
-                                <div style="display: table-cell; padding: 10px;">{{ hotel.dogs }}</div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.dogs == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
                               </div>
                                 <div style="display: table-row;">
                                 <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Short Term Available: </div>
-                                <div style="display: table-cell; padding: 10px;">{{ hotel.short_term }}</div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.short_term == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
                               </div>
                                 <div style="display: table-row;">
                                 <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Food Service Available: </div>
-                                <div style="display: table-cell; padding: 10px;">{{ hotel.food }}</div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.food == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
                               </div>
                                 <div style="display: table-row;">
                                 <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">24 Hour Staff: </div>
-                                <div style="display: table-cell; padding: 10px;">{{ hotel.night_staff }}</div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.night_staff == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
                               </div>
                                 <div style="display: table-row;">
                                 <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Special Service: </div>
@@ -176,7 +206,10 @@
         {% else %}
             {% for review in hotel.reviews.all %}
               {% if review.admin_approved is True %}
-            <p><strong>{{ review.author }} - {{review.pub_date}} </strong>
+            <p><strong>{% if review.author.first_name %} {{ review.author.first_name }}
+                        {% else %}{{ review.author }}
+                        {% endif %}
+                             - {{review.pub_date}} </strong>
                     <p>{{ review.comment }}
        </p><hr>
               {% endif %}
@@ -190,6 +223,7 @@
 
 
           </div>
+        <br><br>
 
     </div>
     <div class="uk-width-1-4@m">

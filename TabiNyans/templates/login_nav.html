@@ -1,14 +1,14 @@
         {%if user.is_authenticated %}
             <a href="{% url 'logout' %}"><button class="uk-button uk-button-default uk-button-small uk-margin-right">Logout</button></a></p>
         {% else %}
-        <button class="uk-button uk-button-default uk-button-small uk-margin-right">Login</button></a>
+        <button href="{% url 'login' %}" class="uk-button uk-button-default uk-button-small uk-margin-right">Login</button></a>
    <div class="uk-navbar-dropdown uk-width-medium">
    <ul class="uk-nav uk-navbar-dropdown-nav ">
-            <form method="POST" action="{% url 'login' %}">
+            <form method="POST" action="{% url 'login' %}" style="margin-bottom: 0; display: inline;">
        {% csrf_token %}
       <input id="username" name="username" placeholder="Username" class="uk-input uk-form-width-medium uk-form-small uk-form-width-medium"><br>
       <input type="password" id="password" name="password" placeholder="Password" class="uk-input uk-form-width-medium uk-form-small uk-form-width-medium"><br><br>
-       <button class="uk-button uk-button-secondary uk-button-small uk-margin-left">Login</button></form><a href="{% url 'register' %}"><button class="uk-button uk-button-default uk-button-small uk-margin-right">Sign Up</button></a>
+                <button class="uk-button uk-button-secondary uk-button-small">Login</button></form><a href="{% url 'register' %}"><button class="uk-button uk-button-default uk-button-small" style="margin-top: 0px;">Sign Up</button></a>
 
        </ul>
         </div>

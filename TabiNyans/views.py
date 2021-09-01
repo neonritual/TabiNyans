@@ -138,11 +138,9 @@ def add_hotel(request):
 
 
 
-class AllHotels(ListView):
+class AllHotels(ListView): ## Development use Only
     model = Hotel
     template_name = 'all_hotels.html'
-
-
 
 
 def detail_view(request, pk):

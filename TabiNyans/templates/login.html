@@ -1,25 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 
-<div class="uk-container uk-margin-large-top">
-    <p>
+<div class="uk-height-viewport uk-margin-remove uk-flex uk-flex-center uk-flex-middle uk-background-cover"
+     data-src="{% static 'images/uta-scholl-W-bi51DgwYQ-unsplash.jpg' %}" uk-img>
+
+<div class="uk-card uk-card-default uk-card-large uk-box-shadow-medium">
+    <div class="uk-card-body">
+        <h2 class="poppins">Login</h2>
+        <hr>
+            Login and jump back into the TabiNyans community.
+        <br>
+    	<!-- login -->
+		    <p>
     <div class="form-group">
     <form method="POST">
        {% csrf_token %}
-      <label for="username">Username:</label><br>
-      <input id="username" name="username" placeholder="Username"><br>
-      <label for="password">Email:</label><br>
-      <input type="password" id="password" name="password" placeholder="Password"><br><br>
-            <button class="btn btn-primary">Submit</button>
+      <input class="uk-input" id="username" name="username" placeholder="Username"><br>
+      <input class="uk-input" type="password" id="password" name="password" placeholder="Password"><br><br>
+            <button class="uk-button uk-button-primary">Submit</button>
     </form>
 </div>
 
 {% for message in messages %}
 					<p id="messages">{{message}}</p>
 				{% endfor %}
+				</fieldset>
+			</form>
 
-</div>
+              </div>
+    </div>
+
 </div>
 
 {%endblock%}
-

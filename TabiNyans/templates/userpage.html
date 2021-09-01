@@ -31,7 +31,7 @@
             {% if likes %}
             {% for like in likes %}
                 <a href="{% url 'hotel_detail' like.hotel.pk %}">
-                - {{ like.hotel }} - {{ like.hotel.city }}</a><br>
+                <span uk-icon="chevron-right"></span> {{ like.hotel }} - {{ like.hotel.city }}</a><br>
             {% endfor %}
             {% endif %}
 
