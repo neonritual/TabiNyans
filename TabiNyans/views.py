@@ -1,18 +1,17 @@
-
+import os
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Avg
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from . import forms
-from django.http import HttpResponse
 from .forms import RegisterForm, HotelSearchForm
 from .models import Hotel, Review, Likes
 from django.views.generic import ListView, TemplateView
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from secretsecret import GOOGLE_API
 
+GOOGLE_API = os.environ.get('TABINYANS_GOOGLE')
 
 
 ## Basic views---
