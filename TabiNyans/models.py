@@ -2,8 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from smart_selects.db_fields import ChainedForeignKey
-from csv import DictReader
-import pandas as pd
 
 class Prefecture(models.Model):
     prefecture=models.CharField(max_length=50)
