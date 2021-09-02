@@ -32,7 +32,8 @@ SECRET_KEY = os.environ.get('TABINYANS_DJANGO')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.awsapprunner.com']
+ALLOWED_HOSTS = ['.awsapprunner.com', 'localhost']
+
 
 USE_DJANGO_JQUERY = True
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'TabiNyans.apps.TabinyansConfig',
      'smart_selects',
@@ -132,11 +134,24 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = (os.path.join(BASE_DIR, 'media') )
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+MEDIA_ROOT = (
+    os.path.join(BASE_DIR, 'media')
 )
+
+STATIC_ROOT = (
+    os.path.join(BASE_DIR, 'static')
+)
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static')
+# )
+
+STATICFILES_DIRS=[(os.path.join(BASE_DIR, 'assets'))]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
