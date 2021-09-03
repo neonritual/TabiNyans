@@ -31,8 +31,8 @@ SECRET_KEY = os.environ.get('TABINYANS_DJANGO')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
-# ALLOWED_HOSTS = ['.awsapprunner.com', 'localhost']
+# ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['.awsapprunner.com', 'localhost']
 
 
 USE_DJANGO_JQUERY = True
