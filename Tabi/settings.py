@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'Tabi.wsgi.application'
 # RDS
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': os.environ.get('POST_DB_USER'),
         'PASSWORD': os.environ.get('POST_DB_PASSWORD'),
