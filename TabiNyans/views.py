@@ -21,7 +21,7 @@ class IndexPage(TemplateView):
 
 def login_nav(request):
     if request.user.is_authenticated:
-        return render(request, 'index.html')
+        return redirect('index')
     else:
         if request.method == 'POST':
             username = request.POST.get('username')
