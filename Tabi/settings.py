@@ -88,21 +88,26 @@ WSGI_APPLICATION = 'Tabi.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
+# RDS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tabidb',
-        'USER': 'postgres',
-        'PASSWORD': 'spot6',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'postgres',
+        'USER': os.environ.get('POST_DB_USER'),
+        'PASSWORD': os.environ.get('POST_DB_PASSWORD'),
+        'HOST': os.environ.get('POST_DB_HOST'),
+        'PORT': '5432',
     }
 }
-
+#LOCAL DB
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'tabidb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'REPLACE THIS WITH OLD TY PASSWORD WHEN USING LOCAL DB'
+#         'HOST': 'localhost',
+#         'PORT': '',
 #     }
 # }
 
