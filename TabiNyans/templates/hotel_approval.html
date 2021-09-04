@@ -17,7 +17,13 @@
                 <div class="uk-card uk-card-default uk-card-body">
 
                     <section style="display: table;">
-                        <h2>{{ hotel.city }}</h2>
+                        <h2>{{ hotel.hotel_name }}</h2>
+                        <br> {% if hotel.logo %}
+                            <img src="{{ hotel.logo.url }}" width="200px" uk-img>
+                            {% else %}
+                            <img src="{% static 'images/heartpawprint.jpg' %}" width="200px" alt="" uk-img>
+                            {% endif %}
+                        <br>
                               <div style="display: table-row;">
                                   <div style="display: table-cell; padding: 10px; width: 50%; color: #b07282; text-transform: uppercase;">City: </div>
                                 <div style="display: table-cell;  padding: 5px; width: 50%;">{{ hotel.city }}</div>
@@ -98,6 +104,15 @@
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.extra }}</div>
                               </div>
 
+                        <br>
+                         <br>  <br> {% if hotel.images %}
+                            <img src="{{ hotel.images.url }}" width="100px" uk-img>
+                            {% else %}
+                            <img src="{% static 'images/heartpawprint.jpg' %}" width="100px" alt="" uk-img>
+                            {% endif %}
+                        <br>
+                        <br>
+
                             </section>
 
                         <br><br>
@@ -105,19 +120,6 @@
                         </div>
                     </div>
                     <div>
-                        <div class="uk-card uk-card-body uk-padding-small  uk-margin-remove" >
-                            <!-- HOTEL LOGO -->
-                            {% if hotel.logo %}
-                            <img src="{{ hotel.logo.url }}" width="200px" uk-img>
-                            {% else %}
-                            <img src="{% static 'images/heartpawprint.jpg' %}" width="200px" alt="" uk-img>
-                            {% endif %}
-                        </div>
-                    <!--GOOGLE MAPS STATIC API-->
-                        <br>
-                        <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ hotel.city }}{{ hotel.address }}&zoom=14&size=300x300&key={{ GOOGLE_API }}">
-                        <br><br>
-                    <!-- GOOGLE MAPS STATIC API END-->
 
                     <br>
 
