@@ -105,8 +105,8 @@
                               </div>
 
                             </section>
-                              {% if hotel.logo %}
-                            <img src="{{ hotel.logo.url }}" width="200px" uk-img>
+                              {% if hotel.images %}
+                            <img src="{{ hotel.images.url }}" width="200px" uk-img>
                             {% else %}
                             <img src="{% static 'images/heartpawprint.jpg' %}" width="200px" alt="" uk-img>
                             {% endif %}
