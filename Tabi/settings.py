@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'TabiNyans.apps.TabinyansConfig',
      'smart_selects',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -144,18 +145,39 @@ USE_L10N = True
 
 USE_TZ = True
 
+#
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/3.2/howto/static-files/
+#
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+######### AWS S3/CLOUD SETTINGS
 
-# MEDIA_ROOT = (os.path.join(BASE_DIR, 'media') )
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
-MEDIA_ROOT = (
-    os.path.join(BASE_DIR, 'media')
-)
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_S3_CUSTOM_DOMAIN')
+
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'Tabi.storage_backends.MediaStorage'
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'assets'),
+]
+
+########
+
+#
+# MEDIA_ROOT = (
+#     os.path.join(BASE_DIR, 'media')
+# )
 
 STATIC_ROOT = (
     os.path.join(BASE_DIR, 'static')
@@ -165,9 +187,10 @@ STATIC_ROOT = (
 #     os.path.join(BASE_DIR, 'static')
 # )
 
-STATICFILES_DIRS=[(os.path.join(BASE_DIR, 'assets'))]
+# STATICFILES_DIRS=[(os.path.join(BASE_DIR, 'assets'))]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+## WHITENOISE SETTING
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
