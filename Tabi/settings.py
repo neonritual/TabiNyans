@@ -88,28 +88,31 @@ WSGI_APPLICATION = 'Tabi.wsgi.application'
 
 
 # RDS
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': os.environ.get('POST_DB_USER'),
-#         'PASSWORD': os.environ.get('POST_DB_PASSWORD'),
-#         'HOST': os.environ.get('POST_DB_HOST'),
-#         'PORT': '5432',
-#     }
-# }
-# LOCAL DB
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tabidb',
-        'USER': 'postgres',
-        'PASSWORD': 'spot6',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': os.environ.get('POST_DB_USER'),
+        'PASSWORD': os.environ.get('POST_DB_PASSWORD'),
+        'HOST': os.environ.get('POST_DB_HOST'),
+        'PORT': '5432',
     }
 }
+
+
+# LOCAL DB
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'tabidb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'spot6',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 
 # Password validation
