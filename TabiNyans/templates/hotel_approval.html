@@ -16,14 +16,14 @@
             <div class="uk-width-3-4">
                 <div class="uk-card uk-card-default uk-card-body">
 
-                    <section style="display: table;">
-                        <h2>{{ hotel.hotel_name }}</h2>
-                        <br> {% if hotel.logo %}
+                    <p><h2 class="uk-margin-remove-top">{{ hotel.hotel_name }}</h2></p>
+                    <p>{% if hotel.logo %}
                             <img src="{{ hotel.logo.url }}" width="200px" uk-img>
                             {% else %}
                             <img src="{% static 'images/heartpawprint.jpg' %}" width="200px" alt="" uk-img>
-                            {% endif %}
-                        <br>
+                            {% endif %}</p>
+                    <section style="display: table;">
+
                               <div style="display: table-row;">
                                   <div style="display: table-cell; padding: 10px; width: 50%; color: #b07282; text-transform: uppercase;">City: </div>
                                 <div style="display: table-cell;  padding: 5px; width: 50%;">{{ hotel.city }}</div>
@@ -104,24 +104,12 @@
                                 <div style="display: table-cell; padding: 10px;">{{ hotel.extra }}</div>
                               </div>
 
-                        <br>
-                         <br>  <br> {% if hotel.images %}
-                            <img src="{{ hotel.images.url }}" width="100px" uk-img>
-                            {% else %}
-                            <img src="{% static 'images/heartpawprint.jpg' %}" width="100px" alt="" uk-img>
-                            {% endif %}
-                        <br>
-                        <br>
-
                             </section>
-
-                        <br><br>
-
-                        </div>
-                    </div>
-                    <div>
-
-                    <br>
+                              {% if hotel.logo %}
+                            <img src="{{ hotel.logo.url }}" width="200px" uk-img>
+                            {% else %}
+                            <img src="{% static 'images/heartpawprint.jpg' %}" width="200px" alt="" uk-img>
+                            {% endif %}
 
 
                 </div>
