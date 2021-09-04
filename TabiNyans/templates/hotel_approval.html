@@ -16,8 +16,110 @@
             <div class="uk-width-3-4">
                 <div class="uk-card uk-card-default uk-card-body">
 
-                    <p><h2 class="uk-margin-remove-top">{{ hotel.hotel_name }}</h2></p>
-                    <p>{{ hotel.prefecture }}</p>
+                    <section style="display: table;">
+                        <h2>{{ hotel.city }}</h2>
+                              <div style="display: table-row;">
+                                  <div style="display: table-cell; padding: 10px; width: 50%; color: #b07282; text-transform: uppercase;">City: </div>
+                                <div style="display: table-cell;  padding: 5px; width: 50%;">{{ hotel.city }}</div>
+                              </div>
+                              <div style="display: table-row;">
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Address: </div>
+                                <div style="display: table-cell; padding: 10px;">{{ hotel.address }}</div>
+                              </div>
+
+                              <div style="display: table-row;">
+                                <div style="display: table-cell; padding: 10px; color: #b07282; text-transform: uppercase;">Website: </div>
+                                <div style="display: table-cell; padding: 10px;">{% if hotel.website_url %}
+                                                     <a href="{{ hotel.website_url }}">{{ hotel.website_url }}</a>
+                                                    {% else %}
+                                                    None
+                                                    {% endif %}</div>
+                              </div>
+                                <div style="display: table-row;">
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Hours: </div>
+                                <div style="display: table-cell; padding: 10px;">{{ hotel.hours }}</div>
+                              </div>
+                                <div style="display: table-row;">
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">High Season Rate: </div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.high_season == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
+                              </div>
+                                <div style="display: table-row;">
+                                <div style="display: table-cell;  padding: 10px;  color: #b07282; text-transform: uppercase;">Dogs on Premises: </div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.dogs == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
+                              </div>
+                                <div style="display: table-row;">
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Short Term Available: </div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.short_term == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
+                              </div>
+                                <div style="display: table-row;">
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Food Service Available: </div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.food == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
+                              </div>
+                                <div style="display: table-row;">
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">24 Hour Staff: </div>
+                                <div style="display: table-cell; padding: 10px;">
+                                    {% if hotel.night_staff == True %}
+                                    <span uk-icon="check"></span>
+                                    {% else %}
+                                    <span uk-icon="close"></span>
+                                    {% endif %}
+                                </div>
+                              </div>
+                                <div style="display: table-row;">
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Special Service: </div>
+                                <div style="display: table-cell; padding: 10px;">{{ hotel.specials }}</div>
+                              </div>
+                                <div style="display: table-row;">
+                                <div style="display: table-cell;  padding: 10px; color: #b07282; text-transform: uppercase;">Other Information: </div>
+                                <div style="display: table-cell; padding: 10px;">{{ hotel.extra }}</div>
+                              </div>
+
+                            </section>
+
+                        <br><br>
+
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-card uk-card-body uk-padding-small  uk-margin-remove" >
+                            <!-- HOTEL LOGO -->
+                            {% if hotel.logo %}
+                            <img src="{{ hotel.logo.url }}" width="200px" uk-img>
+                            {% else %}
+                            <img src="{% static 'images/heartpawprint.jpg' %}" width="200px" alt="" uk-img>
+                            {% endif %}
+                        </div>
+                    <!--GOOGLE MAPS STATIC API-->
+                        <br>
+                        <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ hotel.city }}{{ hotel.address }}&zoom=14&size=300x300&key={{ GOOGLE_API }}">
+                        <br><br>
+                    <!-- GOOGLE MAPS STATIC API END-->
+
+                    <br>
 
 
                 </div>
