@@ -137,7 +137,7 @@ def add_hotel(request):
 
 
 
-class AllHotels(ListView): ## Development use Only
+class AllHotels(ListView): ## Development use Only; see all hotels.
     model = Hotel
     template_name = 'all_hotels.html'
 
@@ -245,8 +245,6 @@ def search_hotels(request):
         else:
             night_staff = Hotel.objects.filter(night_staff=True) | Hotel.objects.filter(night_staff=False)
 
-
-
         results=city&prefecture&high_season&dogs&short_term&food&night_staff
 
         return render(request, 'results.html', {'results': results})
@@ -259,7 +257,7 @@ def search_hotels(request):
     return render(request, 'search.html', context)
 
 
-## Admin Approvals Panel ---------------
+## Admin Approval Panel ---------------
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='moderators').exists(), login_url='index')
@@ -313,5 +311,3 @@ def delete_review(request, pk):
     review.delete()
     messages.warning(request, 'Review deleted.')
     return redirect('review_approvals')
-
-
