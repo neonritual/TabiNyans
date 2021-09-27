@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('TabiNyans.urls')),
     path('admin/', admin.site.urls),
     path('chaining/', include('smart_selects.urls')),
-    ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ]
+# ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
