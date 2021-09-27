@@ -1,7 +1,8 @@
 # TabiNyans
-Fake website for searching for and reviewing cat-friendly pet hotels in Japan. 
+Fake website for searching for and reviewing cat-friendly pet hotels in Japan.
 
-## <a href="#">:cat2: Live Preview (Click me!):cat2:</a>
+## <a href="https://bnfmh5pxx3.ap-northeast-1.awsapprunner.com/">:cat2: Live Preview (Click me!):cat2:</a>
+*For testing purposes, only <b>Hokkaido > Sapporo</b> has extensive data to search through.
 
 | Role | Username | Password |
 | ------------- | ------------- | ------------|
@@ -10,7 +11,7 @@ Fake website for searching for and reviewing cat-friendly pet hotels in Japan.
 
 <i>Please return changed passwords to default after test.</i>
               <br><a href="https://forms.gle/wk18DwHua6kcD7tt9">Contact me</a><i> if you experience any problems.</i>
-              
+
 ## About TabiNyans
 <i>TabiNyans</i> is a mock hotel reservation and review website with a theme
 close to my heart: cat hotels. Any cat-lover knows that it's hard to find a good pet hotel that also accepts cats.
@@ -27,12 +28,12 @@ submit new hotels and access their user page, as well as a moderation queue for 
 ---
 
 <img src="images/tabi-login.gif" width="50%">
-<i>Navbar showing user-specific links</i> 
+<i>Navbar showing user-specific links</i>
 
 ---
 
 <img src="images/tabi-nickname.gif" width="50%">
-<i>Changing nickname to be displayed on userpage/comments.</i> 
+<i>Changing nickname to be displayed on userpage/comments.</i>
 
 ---
 Logged in users can submit new hotels,
@@ -63,10 +64,9 @@ hotels. Comments enter a moderation queue.
 Users in the moderator group can
  also see the moderation page, where they can approve or delete new comments
  and hotels.
- 
+
  <img src="images/tabi-mod.gif" width="50%">
   <i>Moderating new hotels and comments.</i>
-  
+
   ---
   # :sparkles: Thank you for reading!	:sparkles:
-               
