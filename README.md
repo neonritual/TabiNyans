@@ -1,5 +1,5 @@
 # TabiNyans
-Fake website for searching for and reviewing cat-friendly pet hotels in Japan.
+Mock website for searching for and reviewing cat-friendly pet hotels in Japan.
 
 ## <a href="https://bnfmh5pxx3.ap-northeast-1.awsapprunner.com/">:cat2: Live Preview (Click me!):cat2:</a>
 *For testing purposes, only <b>Hokkaido > Sapporo</b> has extensive data to search through.
